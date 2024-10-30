@@ -1,25 +1,29 @@
-import logo from "../logo.svg";
 import "../App.css";
+import { Component, useState } from "react";
+
+import ImageTile from '../Components/ImageTile'
+import BearPaw from '../Components/BearPaw'
+import { DndContext } from "@dnd-kit/core";
 
 function Game() {
+  const [isDropped, setIsDropped] = useState(false);
+  const draggableMarkup = (
+    <BearPaw>Drag</BearPaw>
+  )
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DndContext onDragEnd={handleDragEnd}>
+      {!isDropped ? draggableMarkup : null}
+      <ImageTile>
+        {isDropped ? draggableMarkup : "Drop"}
+      </ImageTile>
+    </DndContext>
   );
+
+  function handleDragEnd(event) {
+    if (event.over && event.over.id == 'droppable') {
+      setIsDropped(true);
+    }
+  }
 }
 
 export default Game;
