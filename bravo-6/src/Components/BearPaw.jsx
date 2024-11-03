@@ -16,7 +16,7 @@ const BearPaw = () => {
         {...listeners}
         {...attributes}
         style={style}
-        className={`object-fill cursor-pointer ${
+        className={`object-fill touch-none cursor-pointer ${
             isDragging ? 'opacity-50' : 'opacity-100'
           }`}
         >
