@@ -9,9 +9,10 @@ const GameGrid = ({onSelect}) => {
         {id: 4, imageSrc: 'https://placehold.co/200'},
         {id: 5, imageSrc: 'https://placehold.co/200'},
         {id: 6, imageSrc: 'https://placehold.co/200'},
-        {id: 7, imageSrc: 'https://placehold.co/200'}
-    ]) //TODO: Add function to get 9 items in game logic, 
-                                                                   //format should be {id, imageSource}
+        {id: 7, imageSrc: 'https://placehold.co/200'},
+        {id: 8, imageSrc: 'https://placehold.co/200'},
+        {id: 9, imageSrc: 'https://placehold.co/200'}
+    ]) 
 
     return (
         <div className = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
