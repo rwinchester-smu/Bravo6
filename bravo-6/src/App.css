@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+.grid {
+  display: grid;
+  position: absolute;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 50%;
+  height: 30%;
+  top: 30%;
+  left: 40%;
+  text-align: center;
+}
+
+div > div {
+  padding: 2px;
+  background-color: #ccc;
+  border: 1px solid black;
+}
+select{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
