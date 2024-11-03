@@ -20,18 +20,18 @@ const DragAndDropContext = () => {
     }
 
     return (
-    <DndContext onDragEnd={handleDragEnd}>
-        <div className="flex w-full justify-center">
-            <div className="mr-10 p-5">
-                <h1>Chosen image: {chosenImage}</h1>
-                <BearPaw />
+        <DndContext onDragEnd={handleDragEnd}>
+          <div className="flex w-full h-screen items-center justify-center">
+            <div className="flex flex-col items-center mr-10">
+              <h1 className="mb-4">Chosen image: {chosenImage}</h1>
+              <BearPaw />
             </div>
-            <div className="p-5">
-                <GameGrid onSelect={handleSelect} />
+            <div className="p-5 transform scale-50">
+              <GameGrid onSelect={handleSelect} />
             </div>
-        </div>
-    </DndContext>
-    )
+          </div>
+        </DndContext>
+    );
 }
 
 export default DragAndDropContext;

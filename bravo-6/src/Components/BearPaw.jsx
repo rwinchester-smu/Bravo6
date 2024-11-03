@@ -16,11 +16,11 @@ const BearPaw = () => {
         {...listeners}
         {...attributes}
         style={style}
-        className={`w-16 h-16 bg-blue-500 rounded-full cursor-pointer ${
+        className={`object-fill cursor-pointer ${
             isDragging ? 'opacity-50' : 'opacity-100'
           }`}
         >
-            <p className="text-center text-black pt-4">Drag me</p>
+            <img src='https://placehold.co/100x100' className='' />
         </div>
     );
 }
