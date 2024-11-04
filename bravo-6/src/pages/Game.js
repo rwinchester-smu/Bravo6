@@ -1,4 +1,4 @@
-import "../App.css";
+import "./Game.css";
 import { useState } from "react";
 
 import GameGrid from "../Components/GameGrid";
