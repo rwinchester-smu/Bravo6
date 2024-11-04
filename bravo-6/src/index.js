@@ -5,4 +5,4 @@ import Pages from "./Pages";
 import Dictionary from "./pages/Dictionary";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Dictionary />);
+root.render(<Pages />);
