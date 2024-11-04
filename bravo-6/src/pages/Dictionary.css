@@ -1,0 +1,28 @@
+.Dictionary {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+  }
+  
+  li div {
+    padding: 10px 0;
+  }
+  
+  img {
+    display: block;
+    margin: 5px 0;
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  
+  
