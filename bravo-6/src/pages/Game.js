@@ -1,5 +1,11 @@
 import "../App.css";
-import React, { useState } from 'react';
+import { useState } from "react";
+
+import GameGrid from "../Components/GameGrid";
+import BearPaw from "../Components/BearPaw";
+import { DndContext } from "@dnd-kit/core";
+import DragAndDropContext from "../Components/DragAndDropContext";
+
 //grid created for testing
 const Sept = {1:"ni'n",2 :"ki'l",3:"teluisi"}
 const Octo = {1:"ni'n",2 :"ki'l",3:"teluisi",4:"aqq",5:"mijisi",6:"wiktm"}
@@ -11,8 +17,8 @@ const Mar = {1:"ni'n",2 :"ki'l",3:"teluisi",4:"aqq",5:"mijisi",6:"wiktm",7:"kesa
 
 function Game() {
   const [words, setWords] = useState(Sept);
+  const [chosenImage, setChosenImage] = useState(null);
 
-  
   function addWords(event){
 
   if ((event.target.value) == 0) {
@@ -36,10 +42,21 @@ function Game() {
   if ((event.target.value) == 6) {
     setWords(Mar)
   }
-  }
-  return (
+  
+  const handleSelect = (id) => {
+    setChosenImage(id);
+  };
 
-<body>
+  const handleDragEnd = (event) => {
+    const { over } = event;
+    if (over) {
+      handleSelect(event.over.id);
+    }
+  };
+
+  return (
+    <>
+    <body>
 <select onChange={addWords}>
   <option value={0}>Wikumkewiku's	(September)</option>
   <option value={1}>Wikewiku's (October)</option>
@@ -62,7 +79,23 @@ function Game() {
     <div>{words[21]}</div>   
   </div>
   </body>
-      );
-    }
+    <DndContext onDragEnd={handleDragEnd}>
+      <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
+        {/* Bear Paw section, placed above grid on mobile and to the left on desktop */}
+        <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
+          <h1 className="mb-2 text-center">Chosen image: {chosenImage}</h1>
+          <BearPaw />
+        </div>
+
+        {/* Game Grid, centered below Bear Paw on mobile and beside it on desktop */}
+        <div className="flex items-center justify-center">
+          <GameGrid onSelect={handleSelect} />
+        </div>
+      </div>
+    </DndContext>
+</>
+  );
+}
+
 
 export default Game;
