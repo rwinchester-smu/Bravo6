@@ -4,7 +4,6 @@ import { useState } from "react";
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { DndContext } from "@dnd-kit/core";
-import DragAndDropContext from "../Components/DragAndDropContext";
 
 //grid created for testing
 const Sept = {1:"ni'n",2 :"ki'l",3:"teluisi"}
