@@ -17,7 +17,7 @@ const wordsData=[
 // function for the dictionary
 const Dictionary=()=>{
   // manages which word is currently expanded using useState Hook
-  const [expandedWord, setExpandedWord] = useState(null);
+  const [expandedWord,setExpandedWord]=useState(null);
 
   // toggle expanded word
   const toggleExpand=(word)=>{
@@ -34,7 +34,6 @@ const Dictionary=()=>{
           <li key={item.word} onClick={()=>toggleExpand(item.word)} className={`p-4 bg-white cursor-pointer transition-all duration-300`}>
             <div className="flex items-center justify-between">
               <strong className="text-3xl">{item.word}</strong>
-              <span className="text-gray-500"></span>
             </div>
             {expandedWord===item.word && (
               <div className="mt-3 space-y-3 transition-all duration-300 ease-in-out">
@@ -44,7 +43,7 @@ const Dictionary=()=>{
                   alt={item.word}
                   className="w-full h-auto rounded-lg"/>
                 <audio controls className="w-full">
-                  <source src={item.audio} type="audio/mpeg" />
+                  <source src={item.audio} type="audio/mpeg"/>
                 </audio>
               </div>
             )}
