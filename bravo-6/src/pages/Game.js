@@ -1,9 +1,10 @@
 import "./Game.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { DndContext } from "@dnd-kit/core";
 
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
-import { DndContext } from "@dnd-kit/core";
+import { CaluclateWinLoss, ProvideWinLossFeedback } from "../Utils/GameLogic";
 
 //grid created for testing
 const Sept = {1:"ni'n",2 :"ki'l",3:"teluisi"}
@@ -16,40 +17,59 @@ const Mar = {1:"ni'n",2 :"ki'l",3:"teluisi",4:"aqq",5:"mijisi",6:"wiktm",7:"kesa
 
 function Game() {
   const [words, setWords] = useState(Sept);
-  const [chosenImage, setChosenImage] = useState(null);
+  const [playerChosenImage, setPlayerChosenImage] = useState(null);
+  const [targetImage, setTargetImage] = useState(null);
 
-  function addWords(event){
+  useEffect(() => {
+    // Choose a target image whenever the `words` set changes
+    // TODO: also change on win/loss
+    chooseWord();
+  }, [words]);
 
-  if ((event.target.value) == 0) {
-    setWords(Sept)
+  function addWords(event) {
+    if (event.target.value == 0) {
+      setWords(Sept);
+    }
+    if (event.target.value == 1) {
+      setWords(Octo);
+    }
+    if (event.target.value == 2) {
+      setWords(Nov);
+    }
+    if (event.target.value == 3) {
+      setWords(Dec);
+    }
+    if (event.target.value == 4) {
+      setWords(Jan);
+    }
+    if (event.target.value == 5) {
+      setWords(Feb);
+    }
+    if (event.target.value == 6) {
+      setWords(Mar);
+    }
   }
-  if ((event.target.value) == 1) {
-    setWords(Octo)
-  }
-  if ((event.target.value) == 2) {
-    setWords(Nov)
-  }
-  if ((event.target.value) == 3) {
-    setWords(Dec)
-  }
-  if ((event.target.value) == 4) {
-    setWords(Jan)
-  }
-  if ((event.target.value) == 5) {
-    setWords(Feb)
-  }
-  if ((event.target.value) == 6) {
-    setWords(Mar)
-  }
-}
-  
 
-  // When the user finishes dragging the BearPaw, it calls setChosenImage
-  // with the id of the image that the BearPaw was dragged onto
+  const chooseWord = () => {
+    const maxKey = Object.keys(words).length;
+    const randomKey = Math.floor(Math.random() * maxKey) + 1; // Random key between 1 and maxKey
+    setTargetImage(randomKey); // Store the random key in targetImage
+  };
+
+  // On drag end, it calls setChosenImage
+  // with the id of the image that the BearPaw was dragged onto and calls
+  // WinLossCalculation and WinLossFeedback to complete the round
   const handleDragEnd = (event) => {
     const { over } = event;
     if (over) {
-      setChosenImage(event.over.id);
+      setPlayerChosenImage(over.id);
+
+      console.log("playerImage " + playerChosenImage);
+      console.log("goalImage " + targetImage);
+
+      let isWin = CaluclateWinLoss(playerChosenImage, targetImage);
+      ProvideWinLossFeedback(isWin);
+      console.log("Win: " + isWin);
     }
   };
 
@@ -79,11 +99,13 @@ function Game() {
       </div> */}
       </div>
 
-      {/* Are containg draggable and droppable elements */}
+      {/* Contains draggable and droppable elements */}
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
-            <h1 className="mb-2 text-center">Chosen image: {chosenImage}</h1>
+            <h1 className="mb-2 text-center">
+              Chosen image: {playerChosenImage}
+            </h1>
             {/* Draggable bearpaw */}
             <BearPaw />
           </div>
