@@ -1,4 +1,4 @@
-export const CaluclateWinLoss = (playerSelectedImage, targetImage) => 
+export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
 {
     if (playerSelectedImage === targetImage)
     {
