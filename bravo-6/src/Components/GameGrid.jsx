@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import ImageTile from './ImageTile';
 
-// Maps out droppable ImageTiles into a 3 col grid, based on an array of image 
-// objects. 
-// Author: Riley Winchester
-const GameGrid = () => {
+const GameGrid = ({onSelect}) => {
     const [gridItems, setGridItems] = useState([
         {id: 1, imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHclVZgbbe4W2pIyuqctXzdnvqYn7QWgyW5Q&s'},
         {id: 2, imageSrc: 'https://placehold.co/200'},
@@ -25,6 +22,7 @@ const GameGrid = () => {
        // </div>
         /* use lg */
    // );
+   //making the grid three column no matter the page size
    return (
     <div className="grid grid-cols-3 gap-4 p-4">
         {gridItems.map(({ id, imageSrc }) => (
@@ -32,19 +30,6 @@ const GameGrid = () => {
         ))}
     </div>
 );
-        {id: 9, imageSrc: 'https://placehold.co/200'}
-    ]) //Initialized with an array of placeholders. 
-    //TODO replace current placeholder with stylized ones, and accept an prop for
-    //an array of randomly selected image files
-
-    //returns the array mapped into a grid 
-    return (
-        <div className = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-            {gridItems.map(({id, imageSrc}) => (
-                <ImageTile key ={id} id={id} imageSrc={imageSrc} />
-            ))}
-        </div>
-    );
 };
 
 export default GameGrid;
