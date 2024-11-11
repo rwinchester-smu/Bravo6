@@ -1,10 +1,9 @@
-import "../App.css";
+import "./Game.css";
 import { useState } from "react";
 
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { DndContext } from "@dnd-kit/core";
-import DragAndDropContext from "../Components/DragAndDropContext";
 
 //grid created for testing
 const Sept = {1:"ni'n",2 :"ki'l",3:"teluisi"}
@@ -44,14 +43,13 @@ function Game() {
   }
 }
   
-  const handleSelect = (id) => {
-    setChosenImage(id);
-  };
 
+  // When the user finishes dragging the BearPaw, it calls setChosenImage
+  // with the id of the image that the BearPaw was dragged onto
   const handleDragEnd = (event) => {
     const { over } = event;
     if (over) {
-      handleSelect(event.over.id);
+      setChosenImage(event.over.id);
     }
   };
 
@@ -79,21 +77,25 @@ function Game() {
         <div>{words[18]}</div>
         <div>{words[21]}</div>   
       </div> */}
-  </div>
-    <DndContext onDragEnd={handleDragEnd}>
-      <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
-        <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
-          <h1 className="mb-2 text-center">Chosen image: {chosenImage}</h1>
-          <BearPaw />
-        </div>
-
-        <div className="flex items-center justify-center">
-          <GameGrid onSelect={handleSelect} />
-        </div>
       </div>
-    </DndContext>
-</>
+
+      {/* Are containg draggable and droppable elements */}
+      <DndContext onDragEnd={handleDragEnd}>
+        <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
+          <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
+            <h1 className="mb-2 text-center">Chosen image: {chosenImage}</h1>
+            {/* Draggable bearpaw */}
+            <BearPaw />
+          </div>
+
+          <div className="flex items-center justify-center">
+            {/* Grid of droppable images */}
+            <GameGrid />
+          </div>
+        </div>
+      </DndContext>
+    </>
   );
-};
+}
 
 export default Game;
