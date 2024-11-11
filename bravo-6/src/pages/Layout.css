@@ -1,0 +1,10 @@
+body {
+  background: linear-gradient(to right, #ffdd57, #ff6f61);
+  /* Fallback color */
+  background-color: #ffdd57;
+}
+
+html {
+  /* this makes sure the padding and the border is included in the box sizing */
+  box-sizing: inherit;
+}
