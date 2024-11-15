@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
 import './Dictionary.css';
-
-// data to hold terms, images, audio files and descriptions
-const wordsData=[
-  {word:"ni'n",description:"I",
-  image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-  audio:"https://path-to-your-audio/react.mp3"},
-  {word:"ki'l",description:"you",
-  image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-  audio:"https://path-to-your-audio/javascript.mp3"},
-  {word:"teluisi",description:"My name is...",
-  image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-  audio:"https://path-to-your-audio/node.mp3"},
-];
+import wordsData from '../Components/wordsData.js';
 
 // function for the dictionary
 const Dictionary=()=>{
   // manages which word is currently expanded using useState Hook
   const [expandedWord,setExpandedWord]=useState(null);
-
+  
   // toggle expanded word
   const toggleExpand=(word)=>{
     // ternary operator to close word if expanded, expand it otherwise
@@ -28,7 +16,7 @@ const Dictionary=()=>{
   // return value
   return (
     <div className="max-w-md mx-auto p-4 bg-gray-100 shadow-lg Dictionary">
-      <h1 className="text-2xl font-semibold text-center mb-4">Dictionary</h1>
+      <h1 className="text-2xl font-semibold text-center mb-4">dictionary</h1>
       <ul>
         {wordsData.map((item,index) => (
           <li key={item.word} onClick={()=>toggleExpand(item.word)} className={`p-4 bg-white cursor-pointer transition-all duration-300`}>
@@ -43,7 +31,7 @@ const Dictionary=()=>{
                   alt={item.word}
                   className="w-full h-auto rounded-lg"/>
                 <audio controls className="w-full">
-                  <source src={item.audio} type="audio/mpeg"/>
+                  <source src={item.audio} type="audio/wav"/>
                 </audio>
               </div>
             )}
