@@ -1,5 +1,5 @@
 import "./Game.css";
-import { useState, useEffect, useCallback, useDebugValue, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { DndContext } from "@dnd-kit/core";
 
 import GameGrid from "../Components/GameGrid";
@@ -24,9 +24,17 @@ function Game() {
   const [usedWords, setUsedWords] = useState([]);
 
   const chooseTargetImage = () => {
+    //Behavior for testing purposes when no more words remain. 
+    if (usedWords.length === Object.keys(words).length) {
+      alert("All words used! Please select a new month.");
+      setUsedWords([]);
+      setPlayerChosenImage(null)
+      setWinCounter(0)
+      return;
+    }
+
     let maxKey = Object.keys(words).length;
     let randomKey;
-    debugger;
     do {
       randomKey = Math.floor(Math.random() * maxKey) + 1;
     } while (usedWords.some(word => word === randomKey));
@@ -35,70 +43,62 @@ function Game() {
   };
 
   useEffect(() => {
-    // Choose a target image on game start
     chooseTargetImage();
-  }, []);
+  }, [usedWords]);
 
-  useEffect(() => {
-    if (playerChosenImage !== null) {
-      if (!usedWords.some(word => word == targetImage)) {
+  function addWords(event) {
+    let month = Number(event.target.value);
+    let newWords;
+
+    switch (month) {
+      case 0:
+        newWords = Sept;
+        break;
+      case 1:
+        newWords = Octo;
+        break;
+      case 2:
+        newWords = Nov;
+        break;
+      case 3:
+        newWords = Dec;
+        break;
+      case 4:
+        newWords = Jan;
+        break;
+      case 5:
+        newWords = Feb;
+        break;
+      case 6:
+        newWords = Mar;
+        break;
+      default:
+        newWords = Sept; // Default to September
+    }
+
+    setWords(newWords);
+    setUsedWords([]);
+    setPlayerChosenImage(null)
+    setWinCounter(0)
+  }
+
+  const handleDragEnd = (event) => {
+    debugger;
+    if (event.over !== null) {
+      setPlayerChosenImage(event.over.id)
+      if (!usedWords.some(word => word === targetImage)) {
         setUsedWords(prevUsedWords => [...prevUsedWords, targetImage]);
       }
 
-      // console.log("playerImage " + playerChosenImage);
-      // console.log("goalImage " + targetImage);
-      // console.log(words)
-      // console.log(usedWords)
-
-      debugger;
-
-      let isWin = CalculateWinLoss(playerChosenImage, targetImage);
-      if (isWin){
+      let isWin = CalculateWinLoss(event.over.id, targetImage)
+      if (isWin) {
         setWinCounter(winCounter => winCounter + 1)
+        debugger;
       }
-      ProvideWinLossFeedback(isWin);
-      console.log("Win: " + isWin);
-      chooseTargetImage();
-    }
-  }, [ playerChosenImage, words])
 
-  function addWords(event) {
-    if (event.target.value === 0) {
-      setWords(Sept);
+      ProvideWinLossFeedback(isWin)
     }
-    if (event.target.value === 1) {
-      setWords(Octo);
-    }
-    if (event.target.value === 2) {
-      setWords(Nov);
-    }
-    if (event.target.value === 3) {
-      setWords(Dec);
-    }
-    if (event.target.value === 4) {
-      setWords(Jan);
-    }
-    if (event.target.value === 5) {
-      setWords(Feb);
-    }
-    if (event.target.value === 6) {
-      setWords(Mar);
-    }
-    setUsedWords([]);
-    chooseTargetImage();
   }
-
-  // On drag end, it calls setChosenImage
-  // with the id of the image that the BearPaw was dragged onto and calls
-  // WinLossCalculation and WinLossFeedback to complete the round
-  const handleDragEnd = (event) => {
-    const { over } = event;
-    debugger;
-    if (over) {
-      setPlayerChosenImage(over.id);
-      console.log(playerChosenImage);
-    }
-  };
 
   return (
     <>
