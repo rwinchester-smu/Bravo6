@@ -18,5 +18,4 @@ export const ProvideWinLossFeedback = (isWin) =>
     {
         //Play Loss audio
     }
-    //Select new word and images, cont. game
 }

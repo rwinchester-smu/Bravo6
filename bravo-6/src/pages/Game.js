@@ -1,6 +1,7 @@
 import "./Game.css";
 import { useState, useEffect } from "react";
 import { DndContext } from "@dnd-kit/core";
+import { Outlet, Link } from "react-router-dom";
 
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
@@ -113,17 +114,12 @@ function Game() {
         <option value={6}>Si'ko'ku's (March)</option>
 
       </select>
-      {/* <div class="grid">
-        <div>{words[1]}</div>
-        <div>{words[2]}</div>
-        <div>{words[3]}</div>
-        <div>{words[6]}</div>
-        <div>{words[9]}</div>
-        <div>{words[12]}</div>
-        <div>{words[15]}</div>
-        <div>{words[18]}</div>
-        <div>{words[21]}</div>   
-      </div> */}
+
+      <Link className="flex flex-col-reverse" to={"/Dictionary"}>
+        <button className="" type="button">
+          Dictionary
+        </button>
+      </Link>
       </div>
 
       {/* Contains draggable and droppable elements */}
