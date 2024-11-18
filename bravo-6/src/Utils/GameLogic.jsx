@@ -1,8 +1,22 @@
-const GameLogic = () => {
-    <h1>
-        This file will contain functions that can be export and called
-        and used from other components, such as Game.js. 
-    </h1>
+export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
+{
+    if (playerSelectedImage === targetImage)
+    {
+        return true;
+    }
+    return false;
 }
 
-export default GameLogic;
+export const ProvideWinLossFeedback = (isWin) => 
+{
+    if (isWin === true) 
+    {
+        //Play Win Audio
+        //Add star
+    }
+    else
+    {
+        //Play Loss audio
+    }
+    //Select new word and images, cont. game
+}
