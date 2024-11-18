@@ -18,7 +18,7 @@ const words = [
   { word: 'nin', audio: '/audio/nin.wav' },
   { word: 'tata', audio: '/audio/tata.wav' },
   { word: 'teluisi', audio: '/audio/teluisi.wav' },
-  { word: 'ula', audio: '/audio/ula2.wav' },
+  { word: 'ula', audio: '/audio/ula.wav' },
   { word: 'wejiey', audio: '/audio/wejiey.wav' },
   { word: 'weltasi', audio: '/audio/weltasi.wav' },
   { word: 'wiktm', audio: '/audio/wiktm.wav' },
