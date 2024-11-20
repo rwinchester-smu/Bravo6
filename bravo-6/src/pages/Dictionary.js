@@ -26,15 +26,15 @@ const Dictionary=()=>{
       </button>
       <h1 className="text-2xl font-semibold text-center mb-4 mt-4">dictionary</h1>
       <ul>
-        {/* map through wordsData array */}
+        {/* map through wordsData array, create list to display */}
         {wordsData.map((item,index) => (
           <li key={item.word} onClick={()=>toggleExpand(item.word)} 
           className={`p-4 bg-white cursor-pointer transition-all duration-500`}>
-            {/* list items */}
+            {/* container for each item */}
             <div className="flex items-center justify-between">
               <strong className="text-5xl">{item.word}</strong>
             </div>
-            {/* display item contents if it's the correct word, smoothly transitioning */}
+            {/* container for expansion, conditional to open with smooth transition */}
             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                 expandedWord===item.word ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
                 {/* display item contents */}
