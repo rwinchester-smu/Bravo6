@@ -1,4 +1,5 @@
 
+// array of objects representing each word and their data
 const wordsData=[
     {word:"ni'n",description:"I",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
