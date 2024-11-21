@@ -57,12 +57,9 @@ const wordsData=[
     {word:"welta'si",description:"I am happy.",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
     audio:"/audio/weltasi.wav"},
-    {word:"wen",description:"tba",
+    {word:"wen",description:"Who",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-    audio:"/audio/wen.wav"},
-    {word:"net",description:"tba",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-    audio:"/audio/net.wav"},
+    audio:"/audio/wen.wav"}
   ];
 
 export default wordsData;
