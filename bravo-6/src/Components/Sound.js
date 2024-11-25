@@ -1,3 +1,5 @@
+import React, {useEffect} from 'react';
+
 const Sound = ({ src, play }) => {
     useEffect(() => {
         if (play) {
