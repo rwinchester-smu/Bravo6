@@ -4,6 +4,10 @@ export const CalculateWinLoss = (playerSelectedImage, targetImage) =>
     return (playerSelectedImage === targetImage)
 }
 
+export const shuffleArray = (array) => {
+    return [...array].sort(() => Math.random() - 0.5)
+  }
+
 export const ProvideWinLossFeedback = (isWin) => 
 {
     if (isWin === true) 
