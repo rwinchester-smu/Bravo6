@@ -54,27 +54,35 @@ function Game() {
     switch (month) {
       case 0:
         newWords = Sept;
+        console.log("sept");
         break;
       case 1:
         newWords = Octo;
+        console.log("oct");
         break;
       case 2:
         newWords = Nov;
+        console.log("nov");
         break;
       case 3:
         newWords = Dec;
+        console.log("dec");
         break;
       case 4:
         newWords = Jan;
+        console.log("jan");
         break;
       case 5:
         newWords = Feb;
+        console.log("feb");
         break;
       case 6:
         newWords = Mar;
+        console.log("mar");
         break;
       default:
         newWords = Sept; // Default to September
+        console.log("sept")
     }
 
     setWords(newWords);
@@ -115,8 +123,9 @@ function Game() {
 
       </select>
 
-      <Link className="flex flex-col-reverse" to={"/Dictionary"}>
-        <button className="" type="button">
+      <Link to={"/Dictionary"}>
+        <button className="text-black bg-gray-100 px-2 py-2 rounded-lg mb-4 fixed top-5 right-5" 
+        type="button">
           Dictionary
         </button>
       </Link>
@@ -138,7 +147,7 @@ function Game() {
 
           <div className="flex items-center justify-center">
             {/* Grid of droppable images */}
-            <GameGrid />
+            <GameGrid  />
           </div>
         </div>
         </div>

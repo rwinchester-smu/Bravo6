@@ -8,7 +8,7 @@ const wordsData=[
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
     audio:"/audio/kil.wav"},
     {word:"teluisi",description:"My name is...",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
+    image:"https://thumbs.dreamstime.com/b/hand-like-icon-isolated-white-background-vector-illustration-235659506.jpg",
     audio:"/audio/teluisi.wav"},
     {word:"aqq",description:"and",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
