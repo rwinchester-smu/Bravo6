@@ -29,45 +29,65 @@ const monthWordRanges = {
 
 function Game() {
   const [words, setWords] = useState(wordsData.slice(0, 3));
-  const [gridWords, setGridWords] = useState(null);
+  const [gridWords, setGridWords] = useState([]);
   const [playerChosenImage, setPlayerChosenImage] = useState(null);
   const [targetImage, setTargetImage] = useState(null);
   const [winCounter, setWinCounter] = useState(0);
   const [usedWords, setUsedWords] = useState([]);
 
   const chooseTargetImage = () => {
-    //Behavior for testing purposes when no more words remain. 
-    if (usedWords.length === words.length) {
-      alert("All words used! Please select a new month.");
-      setUsedWords([]);
-      setPlayerChosenImage(null)
-      setWinCounter(0)
-      return;
-    }
+    debugger;
+    let unusedIndices = words
+      .map((_, index) => index)
+      .filter(index => !usedWords.includes(index));
 
-    let maxKey = Object.keys(words).length;
-    let randomKey;
-    do {
-      randomKey = Math.floor(Math.random() * words.length); // Generate index within bounds
-    } while (usedWords.includes(randomKey));
+      if (unusedIndices.length === 0) {
+        alert('word gone');
+        resetGame();
+        return;
+      }
 
-    setTargetImage(randomKey); // Use the valid index
+      let randomKey = unusedIndices[Math.floor(Math.random() * unusedIndices.length)];
+      setTargetImage(randomKey);
   };
 
   useEffect(() => {
     chooseTargetImage();
   }, [usedWords]);
 
+  useEffect(() => {
+    const [start, end] = monthWordRanges[0]; // Default to September
+    const initialWords = wordsData.slice(start, end);
+  
+    const shuffledGridWords = shuffleArray(initialWords).slice(0, 9);
+    setWords(initialWords);
+    setGridWords(shuffledGridWords);
+  
+    // Set the target image after gridWords is populated
+    if (shuffledGridWords.length > 0) {
+      setTargetImage(Math.floor(Math.random() * shuffledGridWords.length));
+    }
+  }, []);
+
   function addWords(event) {
     let month = Number(event.target.value);
     let [start, end] = monthWordRanges[month] || [0, 3]
     let newWords = wordsData.slice(start, end);
 
+    if (newWords.length === 0) {
+      alert('uh oh');
+      return;
+    }
+
     setWords(newWords);
     setGridWords(shuffleArray(newWords).slice(0, 9));
+    resetGame();
+  }
+
+  const resetGame = () => {
     setUsedWords([]);
-    setPlayerChosenImage(null)
-    setWinCounter(0)
+    setPlayerChosenImage(null);
+    setWinCounter(0);
   }
 
   const shuffleArray = (array) => {
@@ -76,19 +96,18 @@ function Game() {
 
   const handleDragEnd = (event) => {
     debugger;
-    if (event.over !== null) {
-      setPlayerChosenImage(event.over.id)
-      if (!usedWords.includes(targetImage)) {
-        setUsedWords(prevUsedWords => [...prevUsedWords, targetImage]);
-      }
+    if (!event.over) return;
 
-      let isWin = CalculateWinLoss(event.over.id, gridWords[targetImage])
-      if (isWin) {
-        setWinCounter(winCounter => winCounter + 1)
-      }
+    let selectedImageId = Number(event.over.id);
 
-      ProvideWinLossFeedback(isWin)
+    let isWin = CalculateWinLoss(selectedImageId, (targetImage + 1));
+    if (isWin) setWinCounter(prev => prev + 1);
+  
+    if (!usedWords.includes(targetImage)) {
+      setUsedWords(prev => [...prev, targetImage]);
     }
+
+    ProvideWinLossFeedback(isWin);
   }
 
   return (
@@ -119,7 +138,7 @@ function Game() {
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
             <h1 className="flex flex-row mb-2 text-center">
-              Chosen image: {playerChosenImage} <br />
+            Chosen Word: {playerChosenImage !== null ? gridWords[playerChosenImage]?.word : "None"} <br />
               Win Counter: {winCounter}
             </h1>
             {/* Draggable bearpaw */}
@@ -128,7 +147,7 @@ function Game() {
 
           <div className="flex items-center justify-center">
             {/* Grid of droppable images */}
-            <GameGrid />
+            <GameGrid words={gridWords}/>
           </div>
         </div>
         </div>
