@@ -58,3 +58,7 @@ select{
   top: 10px;
   left: 20px;
 }
+
+div {
+  font-family: "Comic Sans MS", cursive;
+}
