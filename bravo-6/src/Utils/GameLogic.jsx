@@ -1,10 +1,7 @@
 export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
 {
-    if (playerSelectedImage === targetImage)
-    {
-        return true;
-    }
-    return false;
+    debugger;
+    return (playerSelectedImage === targetImage)
 }
 
 export const ProvideWinLossFeedback = (isWin) => 
