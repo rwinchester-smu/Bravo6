@@ -1,12 +1,11 @@
-import React from 'react';
-
-function Sound({src, play}) {
-    React.useEffect(() => {
+const Sound = ({ src, play }) => {
+    useEffect(() => {
         if (play) {
-            const audio = new Audio(src);
-            audio.play();
+            new Audio(src).play();
         }
     }, [play, src]);
 
     return null;
-}
+};
+
+export default Sound;
