@@ -2,7 +2,6 @@ import "./Game.css";
 import { useState, useEffect } from "react";
 import { DndContext } from "@dnd-kit/core";
 import { Outlet, Link } from "react-router-dom";
-
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { CalculateWinLoss, ProvideWinLossFeedback } from "../Utils/GameLogic";
