@@ -3,12 +3,13 @@ let lossAudio = new Audio('/audio/telatekn.wav');
 
 export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
 {
-    if (playerSelectedImage === targetImage)
-    {
-        return true;
-    }
-    return false;
+    debugger;
+    return (playerSelectedImage === targetImage)
 }
+
+export const shuffleArray = (array) => {
+    return [...array].sort(() => Math.random() - 0.5)
+  }
 
 export const ProvideWinLossFeedback = (isWin) => 
 {
