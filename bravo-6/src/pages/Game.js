@@ -55,19 +55,12 @@ function Game() {
   const [winCounter, setWinCounter] = useState(0);
   const [usedWords, setUsedWords] = useState([]);
 
-  const playWordAudio = (word) => {
-    if (audioFiles[word]) {
-      console.log(`Playing audio: ${audioFiles[word]}`);
-      const audio = new Audio(audioFiles[word]);
-      audio.onerror = (e) => {
-        console.error(`Error loading audio file for word: ${word}`, e);
-      };
-      audio.play();
-    } else {
-      console.error(`Audio file for word: ${word} not found`);
+  const playWordAudio = (word) => { 
+    if (words[word]) { 
+      setPlayAudio(words[word]); 
+      setTimeout(() => setPlayAudio(null), 1000);
     }
   };
-  
 
   const chooseTargetImage = () => {
     //Behavior for testing purposes when no more words remain. 
