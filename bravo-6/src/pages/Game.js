@@ -1,10 +1,38 @@
 import "./Game.css";
-import { useState, useEffect } from "react";
 import { DndContext } from "@dnd-kit/core";
 import { Outlet, Link } from "react-router-dom";
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { CalculateWinLoss, ProvideWinLossFeedback } from "../Utils/GameLogic";
+import { useState, useEffect } from "react";
+import Sound from '../Components/Sound';
+import soundImage from '../images/soundimage.png';
+
+//map words to audios
+const audioFiles = {
+  "ala'tu": "/audio/alatu.wav",
+  "aqq": "/audio/aqq.wav",
+  "eliey": "/audio/eliey.wav",
+  "kelulktelatekn": "/audio/kelulktelatekn.wav",
+  "kesalk": "/audio/kesalk.wav",
+  "kesalul": "/audio/kesalul.wav",
+  "kesatm": "/audio/kesatm.wav",
+  "kiju": "/audio/kiju.wav",
+  "ki'l": "/audio/kil.wav",
+  "kjinukwalsiap": "/audio/kjinukwalsiap.wav",
+  "l'tu": "/audio/ltu.wav",
+  "mijisi": "/audio/mijisi.wav",
+  "nekm": "/audio/nekm.m4a",
+  "nemitu": "/audio/nemitu.wav",
+  "ni'n": "/audio/nin.wav",
+  "ta'ta": "/audio/tata.wav",
+  "teluisi": "/audio/teluisi.wav",
+  "ula": "/audio/ula.wav",
+  "wejiey": "/audio/wejiey.wav",
+  "welta'si": "/audio/weltasi.wav",
+  "wen": "/audio/wen.m4a",
+  "wiktm": "/audio/wiktm.wav"
+};
 
 //grid created for testing
 const Sept = {1:"ni'n",2 :"ki'l",3:"teluisi"}
@@ -16,12 +44,30 @@ const Feb = {1:"ni'n",2 :"ki'l",3:"teluisi",4:"aqq",5:"mijisi",6:"wiktm",7:"kesa
 const Mar = {1:"ni'n",2 :"ki'l",3:"teluisi",4:"aqq",5:"mijisi",6:"wiktm",7:"kesalk",8:"l'tu",9:"eliey",10:"nemitu",11:"kesatm",12:"wejiey",13:"ta'ta",14:"kiju",15:"nekm",16:"ala'tu",17:"ula",18:"kesalul",19:"welta'si",20:"wen",21:"net"}
 
 function Game() {
+  //audio files
+  const [currentWord, setCurrentWord] = useState("alatu");
+  const [playAudio, setPlayAudio] = useState(null);
+
   const [words, setWords] = useState(Sept);
   
   const [playerChosenImage, setPlayerChosenImage] = useState(null);
   const [targetImage, setTargetImage] = useState(null);
   const [winCounter, setWinCounter] = useState(0);
   const [usedWords, setUsedWords] = useState([]);
+
+  const playWordAudio = (word) => {
+    if (audioFiles[word]) {
+      console.log(`Playing audio: ${audioFiles[word]}`);
+      const audio = new Audio(audioFiles[word]);
+      audio.onerror = (e) => {
+        console.error(`Error loading audio file for word: ${word}`, e);
+      };
+      audio.play();
+    } else {
+      console.error(`Audio file for word: ${word} not found`);
+    }
+  };
+  
 
   const chooseTargetImage = () => {
     //Behavior for testing purposes when no more words remain. 
@@ -124,7 +170,16 @@ function Game() {
       {/* Contains draggable and droppable elements */}
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex flex-col items-center">
+          {/* Word and sound image container */}
+          <div className="word-container">
             <h1 className="font-bold text-2xl">{words[targetImage]}</h1>
+            <img
+              src={soundImage}
+              alt="Sound"
+              className="sound-image"
+              onClick={() => playWordAudio(words[targetImage])}
+              />
+            </div>
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
             <h1 className="flex flex-row mb-2 text-center">
@@ -142,6 +197,9 @@ function Game() {
         </div>
         </div>
       </DndContext>
+
+      {playAudio && <Sound src={playAudio} play />}
+
     </>
   );
 }
