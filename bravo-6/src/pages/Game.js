@@ -54,35 +54,27 @@ function Game() {
     switch (month) {
       case 0:
         newWords = Sept;
-        console.log("sept");
         break;
       case 1:
         newWords = Octo;
-        console.log("oct");
         break;
       case 2:
         newWords = Nov;
-        console.log("nov");
         break;
       case 3:
         newWords = Dec;
-        console.log("dec");
         break;
       case 4:
         newWords = Jan;
-        console.log("jan");
         break;
       case 5:
         newWords = Feb;
-        console.log("feb");
         break;
       case 6:
         newWords = Mar;
-        console.log("mar");
         break;
       default:
         newWords = Sept; // Default to September
-        console.log("sept")
     }
 
     setWords(newWords);
