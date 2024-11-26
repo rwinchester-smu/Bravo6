@@ -103,8 +103,9 @@ function Game() {
 
       </select>
 
-      <Link className="flex flex-col-reverse" to={"/Dictionary"}>
-        <button className="" type="button">
+      <Link to={"/Dictionary"}>
+        <button className="text-black bg-gray-100 px-2 py-2 rounded-lg mb-4 fixed top-5 right-5" 
+        type="button">
           Dictionary
         </button>
       </Link>

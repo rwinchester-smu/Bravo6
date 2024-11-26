@@ -1,4 +1,6 @@
 
+// array of objects representing each word and their data
+// athor: cohen creighton
 const wordsData=[
     {id:1,word:"ni'n",description:"I",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
@@ -57,12 +59,9 @@ const wordsData=[
     {id:19,word:"welta'si",description:"I am happy.",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
     audio:"/audio/weltasi.wav"},
-    {id:20,word:"wen",description:"tba",
+    {id:20,word:"wen",description:"Who",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
     audio:"/audio/wen.wav"},
-    {id:21,word:"net",description:"tba",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-    audio:"/audio/net.wav"},
   ];
 
 export default wordsData;
