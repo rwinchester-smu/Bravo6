@@ -2,22 +2,14 @@ body {
   background: linear-gradient(to right, #ffdd57, #ff6f61);
   /* Fallback color */
   background-color: #ffdd57;
-  margin: 0; /* Remove default margin */
-  height: 130vh; /* Full viewport height */
+
+  height: 110vh; /* Full viewport height */
   display: flex; /* Use flexbox for centering */
   justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
+  align-items: flex; /* Vertically center */
+  overflow: hidden; /* Hide scrollbar */
 }
 
-html {
-  /* this makes sure the padding and the border is included in the box sizing */
-  box-sizing: inherit;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
