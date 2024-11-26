@@ -135,6 +135,12 @@ function Game() {
             {/* Grid of droppable images */}
             <GameGrid words={gridWords}/>
           </div>
+          {/* stars given to each correct guess, wrapping in case of overflow on screen */}
+          <div className="flex flex-wrap mt-4">
+            {Array.from({ length:winCounter}).map((_, index)=>(
+              <img key={index} src={'/star.png'} alt="star" className="w-8 h-8 mx-1" />
+            ))}
+          </div>
         </div>
         </div>
       </DndContext>
