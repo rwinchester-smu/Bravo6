@@ -62,3 +62,15 @@ select{
 div {
   font-family: "Comic Sans MS", cursive;
 }
+
+.sound-image {
+  width: 40px; 
+  height: 40px;
+  margin-left: 10px;
+}
+
+.word-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
