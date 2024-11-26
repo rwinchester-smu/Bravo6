@@ -1,8 +1,17 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #BFDBFE;
+}
+
 .Dictionary {
     font-family: "Comic Sans MS", cursive;
     max-width: 600px;
-    margin: 20px auto;
+    margin: auto;
     text-align: left;
+    min-height:100vh;
   }
   
   ul {
