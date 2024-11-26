@@ -92,7 +92,7 @@ function Game() {
   return (
     <>
     <div>
-      <select onChange={addWords}>
+      <select onChange={addWords} className="relative">
         <option value={0}>Wikumkewiku's	(September)</option>
         <option value={1}>Wikewiku's (October)</option>
         <option value={2}>Keptekewiku's (November)</option>
@@ -114,7 +114,7 @@ function Game() {
       {/* Contains draggable and droppable elements */}
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex flex-col items-center">
-        <h1 className="font-bold text-2xl">
+        <h1 className="font-bold text-2xl mt-8">
           {targetWord !== null ? targetWord.word : "Loading..."}
         </h1>
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
