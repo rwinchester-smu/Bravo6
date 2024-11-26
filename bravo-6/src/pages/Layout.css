@@ -2,9 +2,30 @@ body {
   background: linear-gradient(to right, #ffdd57, #ff6f61);
   /* Fallback color */
   background-color: #ffdd57;
+  margin: 0; /* Remove default margin */
+  height: 130vh; /* Full viewport height */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
 }
 
 html {
   /* this makes sure the padding and the border is included in the box sizing */
   box-sizing: inherit;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; /* Adjust the gap as needed */
+  max-width: 300px; /* Maximum width for the grid */
+  width: 90%; /* Take up full width of its container but not more than max-width */
+  padding: 20px; /* Padding around the grid */
+  box-sizing: inherit; /* Include padding in width/height calculations */
+  width: 300px; /* Grid size adjust as needed */
+  height: fit-content;
 }

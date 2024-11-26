@@ -20,13 +20,14 @@ const BearPaw = () => {
         <div
         ref={setNodeRef}
         {...listeners}
-        {...attributes}
+        {...attributes}np
         style={style}
         className={`object-fill touch-none cursor-pointer ${
             isDragging ? 'opacity-50' : 'opacity-100'
           }`}
         >
-            <img src='https://placehold.co/100x100' className='' />
+            {/* <img src='https://placehold.co/100x100' className='' /> */}
+        <img src='Images/mikmaq bear paw.png'/>
         </div>
     );
 }

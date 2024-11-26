@@ -53,8 +53,12 @@
   background-color: #ccc;
   border: 1px solid black;
 } */
-select{
+select {
   position: absolute;
   top: 10px;
   left: 20px;
+}
+
+div {
+  font-family: "Comic Sans MS", cursive;
 }
