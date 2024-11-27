@@ -1,5 +1,5 @@
-let winAudio = new Audio('/audio/kelulk.wav');
-let lossAudio = new Audio('/audio/telatekn.wav');
+let winAudio = new Audio('/audio/kelulktelatekn.wav');
+let lossAudio = new Audio('/audio/kjinukwalsiap.wav');
 
 export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
 {
