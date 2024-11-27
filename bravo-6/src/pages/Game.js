@@ -7,7 +7,7 @@ import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { CalculateWinLoss, ProvideWinLossFeedback, shuffleArray } from "../Utils/GameLogic";
 import Sound from '../Components/Sound';
-import soundImage from '../images/soundimage.png';
+import soundImage from '../Components/soundimage.png';
 
 //map words to audios
 const audioFiles = {

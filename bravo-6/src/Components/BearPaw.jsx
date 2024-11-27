@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDraggable} from '@dnd-kit/core';
-import mikmaqBearPaw from '../images/mikmaqbearpaw.png';
+import mikmaqBearPaw from '../Components/mikmaqbearpaw.png';
 
 // Draggable item used to select from droppable grid
 // Uses useDraggable hook from dndkit library, 
