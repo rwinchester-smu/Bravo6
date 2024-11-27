@@ -138,7 +138,7 @@ function Game() {
   return (
     <>
     <div className="bg-blue-200">
-      <select onChange={addWords} className=" fixed text-blue-900 rounded-lg bg-green-400 border-2 border-pink-400">
+      <select onChange={addWords} className=" fixed text-blue-900 rounded-lg bg-green-400 border-2 border-pink-400 top-2 left-2 px-2 py-2">
         <option value={0}>Wikumkewiku's	(September)</option>
         <option value={1}>Wikewiku's (October)</option>
         <option value={2}>Keptekewiku's (November)</option>
@@ -150,24 +150,29 @@ function Game() {
       </select>
 
       <Link to={"/Dictionary"}>
-        <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg mb-4 fixed top-2 right-2 border-2 border-pink-400" 
+        <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg fixed top-2 right-2 border-2 border-pink-400" 
         type="button">
           dictionary
         </button>
       </Link>
+
+      <p className="text-pink-500 text-sm text-right px-5 mt-20">
+        Mikwite'tmk+t Angie
+      </p>
       </div>
+
 
       {/* Contains draggable and droppable elements */}
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="flex flex-col items-center bg-blue-200 min-h-screen p-4">
+        <div className="flex flex-col items-center bg-blue-200 min-h-screen">
 
         {/* Word and sound image container */}
         <div className="word-container">
-          <h1 className="font-bold text-2xl mt-8 text-blue-900">{targetWord?.word}</h1>
+          <h1 className="font-bold text-2xl text-blue-900">{targetWord?.word}</h1>
           <img
             src={soundImage}
             alt="Sound"
-            className="sound-image mt-8"
+            className="sound-image"
             onClick={() => playWordAudio(targetWord?.word)}
           />
         </div> 
