@@ -6,7 +6,7 @@ import ImageTile from './ImageTile';
 const GameGrid = ({words}) => {
     //returns the array mapped into a grid 
     return (
-        <div className = " size-100 grid grid-cols-3 gap-4 p-4 md:size-2/3 grid grid-cols-3 gap-4 p-4 sm:size-100 grid grid-cols-3 gap-4 p-4">
+        <div className = " size-100 grid grid-cols-3 gap-4 p-4 md:size-2/3 sm:size-100">
             {words.map(({image, id}, index) => (
                 <ImageTile key={index} id={id} imageSrc={image} />
             ))}
