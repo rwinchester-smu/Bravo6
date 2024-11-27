@@ -178,7 +178,7 @@ function Game() {
         </div> 
                 
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
-          <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
+          <div className="w-1/3 flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
           {/* <h1 className="flex flex-row mb-2 text-center text-green-900">
                 Chosen Word:{" "}
                 {playerChosenImage !== null
