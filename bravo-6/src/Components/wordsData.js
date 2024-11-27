@@ -36,7 +36,7 @@ const wordsData=[
     image:"/images/I like it.jpeg",
     audio:"/audio/kesatm.wav"},
     {id:12,word:"wejiey",description:"I am coming from...",
-    image:"/images/coming.jpeg",
+    image:"/images/I am coming from.jpeg",
     audio:"/audio/wejiey.wav"},
     {id:13,word:"ta'ta",description:"Dad",
     image:"/images/DAD.jpeg",
