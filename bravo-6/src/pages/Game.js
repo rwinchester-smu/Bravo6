@@ -101,11 +101,11 @@ function Game() {
       return;
     }
 
+    resetGame();
+
     let shuffledGridWords = shuffleArray(newWords).slice(0, 9);
     setWords(newWords);
     setGridWords(shuffledGridWords);
-
-    resetGame();
   }
 
   const resetGame = () => {
@@ -136,7 +136,7 @@ function Game() {
   }
 
   return (
-    <>
+    <div className="overflow-hidden h-screen">
     <div className="bg-blue-200">
       <select onChange={addWords} className=" fixed text-blue-900 rounded-lg bg-green-400 border-2 border-pink-400 top-2 left-2 px-2 py-2">
         <option value={0}>Wikumkewiku's	(September)</option>
@@ -159,7 +159,7 @@ function Game() {
       <p className="text-pink-500 text-sm text-right px-5 mt-20">
         Mikwite'tmk+t Angie
       </p>
-      </div>
+    </div>
 
 
       {/* Contains draggable and droppable elements */}
@@ -202,10 +202,10 @@ function Game() {
             ))}
           </div>
         </div>
-        </div>
+      </div>
       </DndContext>
       {playAudio && <Sound src={playAudio} play />}
-    </>
+    </div>
   );
 }
 
