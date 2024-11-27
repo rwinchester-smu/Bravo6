@@ -48,7 +48,7 @@ const wordsData=[
     image:"/images/him.jpeg",
     audio:"/audio/nekm.m4a"},
     {id:16,word:"ala'tu",description:"I have it.",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
+    image:"/images/i have it.jpeg",
     audio:"/audio/alatu.wav"},
     {id:17,word:"ula",description:"Look at this.",
     image:"/images/lookatthis.avif",
@@ -60,7 +60,7 @@ const wordsData=[
     image:"/images/I am Happy.jpeg",
     audio:"/audio/weltasi.wav"},
     {id:20,word:"wen",description:"Who",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
+    image:"images/who.jpeg",
     audio:"/audio/wen.m4a"},
   ];
 
