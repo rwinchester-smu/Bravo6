@@ -35,6 +35,9 @@ const audioFiles = {
   "wiktm": "/audio/wiktm.wav"
 };
 
+const placeholderImage = {id:99,word:"",description:"", image:"https://fakeimg.pl/1024x1024/4ade80/4ade80?font=bebas",
+audio:""}
+
 // Map of months to word index ranges
 const monthWordRanges = {
   0: [0, 3],   
@@ -58,8 +61,15 @@ function Game() {
   useEffect(() => {
     let [start, end] = monthWordRanges[0]; // Default to September
     let initialWords = wordsData.slice(start, end);
-  
+
     let shuffledGridWords = shuffleArray(initialWords).slice(0, 9);
+    
+
+    while (shuffledGridWords.length < 9) {
+      shuffledGridWords.push(placeholderImage)
+      shuffledGridWords = shuffleArray(shuffledGridWords)
+    }
+
     setWords(initialWords);
     setGridWords(shuffledGridWords);
   }, []);
@@ -84,7 +94,7 @@ function Game() {
   const chooseTargetImage = () => {
     if (gridWords.length === 0) return;
   
-    let availibleWords = gridWords.filter(word => !usedWordIds.includes(word.id))
+    let availibleWords = gridWords.filter(word => !usedWordIds.includes(word.id) && word.word !== "")
 
     // Select a random word from the current grid
     let randomWord = availibleWords[Math.floor(Math.random() * availibleWords.length)];
@@ -104,6 +114,12 @@ function Game() {
     resetGame();
 
     let shuffledGridWords = shuffleArray(newWords).slice(0, 9);
+
+    while (shuffledGridWords.length < 9) {
+      shuffledGridWords.push(placeholderImage)
+      shuffledGridWords = shuffleArray(shuffledGridWords)
+    }
+
     setWords(newWords);
     setGridWords(shuffledGridWords);
   }
@@ -113,6 +129,12 @@ function Game() {
     setWinCounter(0);
 
     let shuffledGridWords = shuffleArray(words).slice(0, 9);
+
+    while (shuffledGridWords.length < 9) {
+      shuffledGridWords.push(placeholderImage)
+      shuffledGridWords = shuffleArray(shuffledGridWords)
+    }
+
     setGridWords(shuffledGridWords);
   }
 
@@ -132,6 +154,12 @@ function Game() {
 
     // Shuffle the grid and select a new target word
     let shuffledGridWords = shuffleArray(words).slice(0, 9);
+
+    while (shuffledGridWords.length < 9) {
+      shuffledGridWords.push(placeholderImage)
+      shuffledGridWords = shuffleArray(shuffledGridWords)
+    }
+
     setGridWords(shuffledGridWords);
   }
 
