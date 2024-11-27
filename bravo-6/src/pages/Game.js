@@ -131,7 +131,7 @@ function Game() {
   return (
     <>
     <div>
-      <select onChange={addWords}>
+      <select className="text-black w-1/4 bg-gray-100 px-1.5 py-1.5 rounded-lg mb-4 fixed top-5 left-3" onChange={addWords}>
         <option value={0}>Wikumkewiku's	(September)</option>
         <option value={1}>Wikewiku's (October)</option>
         <option value={2}>Keptekewiku's (November)</option>
@@ -143,7 +143,7 @@ function Game() {
       </select>
 
       <Link to={"/Dictionary"}>
-        <button className="text-black bg-gray-100 px-2 py-2 rounded-lg mb-4 fixed top-5 right-5" 
+        <button className="text-black bg-gray-100 px-1.5 py-1.5 rounded-lg mb-4 fixed top-5 right-3" 
         type="button">
           Dictionary
         </button>
