@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './Dictionary.css';
 import wordsData from '../Components/wordsData.js';
 
+// author: cohen creighton
+
 // function for the dictionary
 const Dictionary=()=>{
   // manages which word is currently expanded using useState Hook
@@ -19,20 +21,23 @@ const Dictionary=()=>{
   // return value
   return (
     // dictionary container
-    <div className="max-w-md mx-auto p-4 bg-gray-100 shadow-lg Dictionary">
+    <div className="max-w-md mx-auto p-4 bg-blue-200 shadow-lg Dictionary">
       {/* return to game button */}
       <button onClick={()=>nav('/')} 
-        className="text-black bg-white px-4 py-2 rounded-lg mb-4 ">return to game
+        className="text-blue-900 bg-green-400 px-4 py-2 rounded-lg mb-4 border-2 border-pink-400">return to game
       </button>
-      <h1 className="text-2xl font-semibold text-center mb-4 mt-4">dictionary</h1>
+      <h1 className="text-2xl font-semibold text-center mb-4 mt-4 text-blue-900">dictionary</h1>
       <ul>
         {/* map through wordsData array, create list to display */}
-        {wordsData.map((item,index) => (
+        {wordsData.map((item,index)=>(
           <li key={item.word} onClick={()=>toggleExpand(item.word)} 
-          className={`p-4 bg-white cursor-pointer transition-all duration-500`}>
+          // conditional classes for rounded corners at the top and bottom of the list
+          className={`p-4 bg-yellow-100 cursor-pointer transition-all duration-500 ${
+            index===0 ? 'rounded-t-lg' : index===wordsData.length-1 ? 'rounded-b-lg' : ''
+          }`}>
             {/* container for each item */}
             <div className="flex items-center justify-between">
-              <strong className="text-5xl">{item.word}</strong>
+              <strong className="text-5xl text-green-900">{item.word}</strong>
             </div>
             {/* container for expansion, conditional to open with smooth transition */}
             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
@@ -42,7 +47,7 @@ const Dictionary=()=>{
                 <img
                   src={item.image}
                   alt={item.word}
-                  className="w-full h-auto rounded-lg"/>
+                  className="w-full h-auto rounded-2xl"/>
                 <audio controls className="w-full">
                   <source src={item.audio} type="audio/wav"/>
                 </audio>
@@ -56,5 +61,4 @@ const Dictionary=()=>{
 
 export default Dictionary;
 
-// programmed by cohen creighton
 

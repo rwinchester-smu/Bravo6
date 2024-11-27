@@ -130,8 +130,8 @@ function Game() {
 
   return (
     <>
-    <div>
-      <select onChange={addWords}>
+    <div className="bg-blue-200">
+      <select onChange={addWords} className=" fixed text-blue-900 rounded-lg bg-green-400 border-2 border-pink-400">
         <option value={0}>Wikumkewiku's	(September)</option>
         <option value={1}>Wikewiku's (October)</option>
         <option value={2}>Keptekewiku's (November)</option>
@@ -143,20 +143,20 @@ function Game() {
       </select>
 
       <Link to={"/Dictionary"}>
-        <button className="text-black bg-gray-100 px-2 py-2 rounded-lg mb-4 fixed top-5 right-5" 
+        <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg mb-4 fixed top-5 right-5 border-2 border-pink-400" 
         type="button">
-          Dictionary
+          dictionary
         </button>
       </Link>
       </div>
 
       {/* Contains draggable and droppable elements */}
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center bg-blue-200 min-h-screen p-4">
 
         {/* Word and sound image container */}
         <div className="word-container">
-          <h1 className="font-bold text-2xl">{targetWord?.word}</h1>
+          <h1 className="font-bold text-2xl mt-8 text-blue-900">{targetWord?.word}</h1>
           <img
             src={soundImage}
             alt="Sound"
@@ -164,10 +164,10 @@ function Game() {
             onClick={() => playWordAudio(targetWord?.word)}
           />
         </div> 
-                 
+                
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
-          <h1 className="flex flex-row mb-2 text-center">
+          <h1 className="flex flex-row mb-2 text-center text-green-900">
                 Chosen Word:{" "}
                 {playerChosenImage !== null
                   ? gridWords[playerChosenImage]?.word
@@ -182,6 +182,12 @@ function Game() {
           <div className="flex items-center justify-center">
             {/* Grid of droppable images */}
             <GameGrid words={gridWords}/>
+          </div>
+          {/* stars given to each correct guess, wrapping in case of overflow on screen */}
+          <div className="flex flex-wrap justify-start mt-4 w-full">
+            {Array.from({ length:winCounter}).map((_,index)=>(
+              <img key={index} src={'/star.png'} alt="star" className="w-8 h-8 mx-1" />
+            ))}
           </div>
         </div>
         </div>
