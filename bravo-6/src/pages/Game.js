@@ -49,12 +49,10 @@ const monthWordRanges = {
 function Game() {
   const [words, setWords] = useState(wordsData.slice(0, 3));
   const [gridWords, setGridWords] = useState([]);
-  const [playerChosenImage, setPlayerChosenImage] = useState(null);
   const [targetWord, setTargetWord] = useState(null);
   const [winCounter, setWinCounter] = useState(0);
   const [usedWordIds, setUsedWordIds] = useState([]);
   const [playAudio, setPlayAudio] = useState(null);
-  const [targetImage, setTargetImage] = useState(null);
 
 
   useEffect(() => {
@@ -70,6 +68,12 @@ function Game() {
     chooseTargetImage();
   }, [gridWords]);
 
+  useEffect(() => {
+    if (usedWordIds.length === words.length) {
+      resetGame();
+    }
+  }, [usedWordIds]);
+
   const playWordAudio = (word) => { 
     if (audioFiles[word]) { 
       setPlayAudio(audioFiles[word]); 
@@ -80,10 +84,11 @@ function Game() {
   const chooseTargetImage = () => {
     if (gridWords.length === 0) return;
   
+    let availibleWords = gridWords.filter(word => !usedWordIds.includes(word.id))
+
     // Select a random word from the current grid
-    let randomWord = gridWords[Math.floor(Math.random() * gridWords.length)];
+    let randomWord = availibleWords[Math.floor(Math.random() * availibleWords.length)];
     setTargetWord(randomWord);
-    setTargetImage(randomWord.id);
   };
 
   function addWords(event) {
@@ -105,8 +110,10 @@ function Game() {
 
   const resetGame = () => {
     setUsedWordIds([]);
-    setPlayerChosenImage(null);
     setWinCounter(0);
+
+    let shuffledGridWords = shuffleArray(words).slice(0, 9);
+    setGridWords(shuffledGridWords);
   }
 
   const handleDragEnd = (event) => {

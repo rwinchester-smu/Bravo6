@@ -3,7 +3,6 @@ let lossAudio = new Audio('/audio/kjinukwalsiap.wav');
 
 export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
 {
-    debugger;
     return (playerSelectedImage === targetImage)
 }
 
