@@ -24,7 +24,7 @@ const wordsData=[
     image:"I love.jpeg",
     audio:"/audio/kesalk.wav"},
     {id:8,word:"l'tu",description:"Make it.",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
+    image:"/images/makeit.jpg",
     audio:"/audio/ltu.wav"},
     {id:9,word:"eliey",description:"I am going.",
     image:"/images/i am going.jpeg",
