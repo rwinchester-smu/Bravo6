@@ -1,21 +1,26 @@
+let winAudio = new Audio('/audio/kelulktelatekn.wav');
+let lossAudio = new Audio('/audio/kjinukwalsiap.wav');
+
 export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
+{
+    return (playerSelectedImage === targetImage)
+}
+
+export const shuffleArray = (array) => {
+    return [...array].sort(() => Math.random() - 0.5)
+  }
+
+export const ProvideWinLossFeedback = (isWin) => 
+{
+    if (isWin === true) 
     {
-        if (playerSelectedImage === targetImage)
-        {
-            return true;
-        }
-        return false;
+        winAudio.play();
+        //Play Win Audio    
+        //Add star
     }
-    
-    export const ProvideWinLossFeedback = (isWin) => 
+    else
     {
-        if (isWin === true) 
-        {
-            //Play Win Audio
-            //Add star
-        }
-        else
-        {
-            //Play Loss audio
-        }
+        lossAudio.play();
+        //Play Loss audio
     }
+}

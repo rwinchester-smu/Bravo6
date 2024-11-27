@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dictionary.css';
+import wordsData from '../Components/wordsData.js';
 
-// data to hold terms, images, audio files and descriptions
-const wordsData=[
-  {word:"ni'n",description:"I",
-  image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-  audio:"https://path-to-your-audio/react.mp3"},
-  {word:"ki'l",description:"you",
-  image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-  audio:"https://path-to-your-audio/javascript.mp3"},
-  {word:"teluisi",description:"My name is...",
-  image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-  audio:"https://path-to-your-audio/node.mp3"},
-];
+// author: cohen creighton
 
 // function for the dictionary
 const Dictionary=()=>{
   // manages which word is currently expanded using useState Hook
   const [expandedWord,setExpandedWord]=useState(null);
-
+  // navigate function
+  const nav=useNavigate();
+  
   // toggle expanded word
   const toggleExpand=(word)=>{
     // ternary operator to close word if expanded, expand it otherwise
@@ -27,26 +20,38 @@ const Dictionary=()=>{
 
   // return value
   return (
-    <div className="max-w-md mx-auto p-4 bg-gray-100 shadow-lg Dictionary">
-      <h1 className="text-2xl font-semibold text-center mb-4">Dictionary</h1>
+    // dictionary container
+    <div className="max-w-md mx-auto p-4 bg-blue-200 shadow-lg Dictionary">
+      {/* return to game button */}
+      <button onClick={()=>nav('/')} 
+        className="text-blue-900 bg-green-400 px-4 py-2 rounded-lg mb-4 border-2 border-pink-400">return to game
+      </button>
+      <h1 className="text-2xl font-semibold text-center mb-4 mt-4 text-blue-900">dictionary</h1>
       <ul>
-        {wordsData.map((item,index) => (
-          <li key={item.word} onClick={()=>toggleExpand(item.word)} className={`p-4 bg-white cursor-pointer transition-all duration-300`}>
+        {/* map through wordsData array, create list to display */}
+        {wordsData.map((item,index)=>(
+          <li key={item.word} onClick={()=>toggleExpand(item.word)} 
+          // conditional classes for rounded corners at the top and bottom of the list
+          className={`p-4 bg-yellow-100 cursor-pointer transition-all duration-500 ${
+            index===0 ? 'rounded-t-lg' : index===wordsData.length-1 ? 'rounded-b-lg' : ''
+          }`}>
+            {/* container for each item */}
             <div className="flex items-center justify-between">
-              <strong className="text-3xl">{item.word}</strong>
+              <strong className="text-5xl text-green-900">{item.word}</strong>
             </div>
-            {expandedWord===item.word && (
-              <div className="mt-3 space-y-3 transition-all duration-300 ease-in-out">
-                <p className="text-gray-700">{item.description}</p>
+            {/* container for expansion, conditional to open with smooth transition */}
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                expandedWord===item.word ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
+                {/* display item contents */}
+                <p className="text-gray-700 text-xl">{item.description}</p>
                 <img
                   src={item.image}
                   alt={item.word}
-                  className="w-full h-auto rounded-lg"/>
+                  className="w-full h-auto rounded-2xl"/>
                 <audio controls className="w-full">
-                  <source src={item.audio} type="audio/mpeg"/>
+                  <source src={item.audio} type="audio/wav"/>
                 </audio>
               </div>
-            )}
           </li>
         ))}
       </ul>
@@ -56,5 +61,4 @@ const Dictionary=()=>{
 
 export default Dictionary;
 
-// programmed by cohen creighton
 
