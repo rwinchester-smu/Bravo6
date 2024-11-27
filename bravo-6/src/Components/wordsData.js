@@ -51,7 +51,7 @@ const wordsData=[
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
     audio:"/audio/alatu.wav"},
     {id:17,word:"ula",description:"Look at this.",
-    image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
+    image:"/images/lookatthis.avif",
     audio:"/audio/ula.wav"},
     {id:18,word:"kesalul",description:"I love you.",
     image:"/images/hug(i Love you).jpg",
