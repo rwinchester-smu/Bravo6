@@ -17,7 +17,7 @@ function ImageTile({id, imageSrc}) { //TODO: use props instead of expanding them
     return (
         <div ref={setNodeRef} className={`w-200 h-200 border-2 border-gray-300 bg-gray-100 flex items-center justify-center`} >
             <img src={imageSrc} className="w-full h-full object-cover"/>
-            <p>For testing: {id}</p>
+            {/* <p>For testing: {id}</p> */}
         </div>
     )
 }

@@ -167,14 +167,14 @@ function Game() {
                 
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
-          <h1 className="flex flex-row mb-2 text-center text-green-900">
+          {/* <h1 className="flex flex-row mb-2 text-center text-green-900">
                 Chosen Word:{" "}
                 {playerChosenImage !== null
                   ? gridWords[playerChosenImage]?.word
                   : "None"}{" "}
                 <br />
                 Win Counter: {winCounter}
-              </h1>
+              </h1> */}
             {/* Draggable bearpaw */}
             <BearPaw />
           </div>

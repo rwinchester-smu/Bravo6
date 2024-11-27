@@ -1,5 +1,6 @@
 import React from 'react';
 import {useDraggable} from '@dnd-kit/core';
+import mikmaqBearPaw from '../images/mikmaqbearpaw.png';
 
 // Draggable item used to select from droppable grid
 // Uses useDraggable hook from dndkit library, 
@@ -26,7 +27,7 @@ const BearPaw = () => {
             isDragging ? 'opacity-50' : 'opacity-100'
           }`}
         >
-            <img src='https://placehold.co/100x100' className='' />
+            <img src={mikmaqBearPaw} className='' />
         </div>
     );
 }
