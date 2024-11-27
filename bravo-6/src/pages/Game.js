@@ -43,7 +43,7 @@ const monthWordRanges = {
   3: [0, 12],  
   4: [0, 15], 
   5: [0, 18],  
-  6: [0, 21], 
+  6: [0, 20], 
 };
 
 function Game() {
