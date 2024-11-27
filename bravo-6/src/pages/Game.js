@@ -6,6 +6,34 @@ import wordsData from '../Components/wordsData.js';
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { CalculateWinLoss, ProvideWinLossFeedback, shuffleArray } from "../Utils/GameLogic";
+import Sound from '../Components/Sound';
+import soundImage from '../images/soundimage.png';
+
+//map words to audios
+const audioFiles = {
+  "ala'tu": "/audio/alatu.wav",
+  "aqq": "/audio/aqq.wav",
+  "eliey": "/audio/eliey.wav",
+  "kelulktelatekn": "/audio/kelulktelatekn.wav",
+  "kesalk": "/audio/kesalk.wav",
+  "kesalul": "/audio/kesalul.wav",
+  "kesatm": "/audio/kesatm.wav",
+  "kiju'": "/audio/kiju.wav",
+  "ki'l": "/audio/kil.wav",
+  "kjinukwalsiap": "/audio/kjinukwalsiap.wav",
+  "l'tu": "/audio/ltu.wav",
+  "mijisi": "/audio/mijisi.wav",
+  "nekm": "/audio/nekm.m4a",
+  "nemitu": "/audio/nemitu.wav",
+  "ni'n": "/audio/nin.wav",
+  "ta'ta": "/audio/tata.wav",
+  "teluisi": "/audio/teluisi.wav",
+  "ula": "/audio/ula.wav",
+  "wejiey": "/audio/wejiey.wav",
+  "welta'si": "/audio/weltasi.wav",
+  "wen": "/audio/wen.m4a",
+  "wiktm": "/audio/wiktm.wav"
+};
 
 // Map of months to word index ranges
 const monthWordRanges = {
@@ -25,6 +53,9 @@ function Game() {
   const [targetWord, setTargetWord] = useState(null);
   const [winCounter, setWinCounter] = useState(0);
   const [usedWordIds, setUsedWordIds] = useState([]);
+  const [playAudio, setPlayAudio] = useState(null);
+  const [targetImage, setTargetImage] = useState(null);
+
 
   useEffect(() => {
     let [start, end] = monthWordRanges[0]; // Default to September
@@ -39,12 +70,20 @@ function Game() {
     chooseTargetImage();
   }, [gridWords]);
 
+  const playWordAudio = (word) => { 
+    if (audioFiles[word]) { 
+      setPlayAudio(audioFiles[word]); 
+      setTimeout(() => setPlayAudio(null), 1000);
+    }
+  };
+
   const chooseTargetImage = () => {
     if (gridWords.length === 0) return;
   
     // Select a random word from the current grid
     let randomWord = gridWords[Math.floor(Math.random() * gridWords.length)];
     setTargetWord(randomWord);
+    setTargetImage(randomWord.id);
   };
 
   function addWords(event) {
@@ -114,9 +153,18 @@ function Game() {
       {/* Contains draggable and droppable elements */}
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex flex-col items-center bg-blue-200 min-h-screen p-4">
-        <h1 className="font-bold text-2xl mt-8 text-blue-900">
-          {targetWord !== null ? targetWord.word : "Loading..."}
-        </h1>
+
+        {/* Word and sound image container */}
+        <div className="word-container">
+          <h1 className="font-bold text-2xl mt-8 text-blue-900">{targetWord?.word}</h1>
+          <img
+            src={soundImage}
+            alt="Sound"
+            className="sound-image"
+            onClick={() => playWordAudio(targetWord?.word)}
+          />
+        </div> 
+                
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
           <h1 className="flex flex-row mb-2 text-center text-green-900">
@@ -144,6 +192,7 @@ function Game() {
         </div>
         </div>
       </DndContext>
+      {playAudio && <Sound src={playAudio} play />}
     </>
   );
 }
