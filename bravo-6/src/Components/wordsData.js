@@ -46,7 +46,7 @@ const wordsData=[
     audio:"/audio/kiju.wav"},
     {id:15,word:"nekm",description:"him or her",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-    audio:"/audio/nekm.wav"},
+    audio:"/audio/nekm.m4a"},
     {id:16,word:"ala'tu",description:"I have it.",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
     audio:"/audio/alatu.wav"},
@@ -61,7 +61,7 @@ const wordsData=[
     audio:"/audio/weltasi.wav"},
     {id:20,word:"wen",description:"Who",
     image:"https://cdn.vectorstock.com/i/500p/62/66/wave-hand-hello-sign-greeting-gesture-isolated-vector-30246266.jpg",
-    audio:"/audio/wen.wav"},
+    audio:"/audio/wen.m4a"},
   ];
 
 export default wordsData;
