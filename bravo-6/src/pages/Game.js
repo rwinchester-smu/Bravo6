@@ -143,7 +143,7 @@ function Game() {
       </select>
 
       <Link to={"/Dictionary"}>
-        <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg mb-4 fixed top-5 right-5 border-2 border-pink-400" 
+        <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg mb-4 fixed top-2 right-2 border-2 border-pink-400" 
         type="button">
           dictionary
         </button>
@@ -160,7 +160,7 @@ function Game() {
           <img
             src={soundImage}
             alt="Sound"
-            className="sound-image"
+            className="sound-image mt-8"
             onClick={() => playWordAudio(targetWord?.word)}
           />
         </div> 
