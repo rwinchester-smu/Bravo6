@@ -183,8 +183,8 @@ function Game() {
           dictionary
         </button>
       </Link>
-
-      <p className="text-pink-500 text-sm text-right px-5 mt-20">
+      {/* dedication to Angie */}
+      <p className="text-pink-500 text-2xl text-right px-5 mt-20 font-bold">
         Mikwite'tmk+t Angie
       </p>
     </div>
