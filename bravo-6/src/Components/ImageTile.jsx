@@ -15,7 +15,7 @@ function ImageTile({id, imageSrc}) { //TODO: use props instead of expanding them
 
     // Returns droppable grid containing image
     return (
-        <div ref={setNodeRef} className={`w-100 h-100 border-2 flex items-center justify-center`} >
+        <div ref={setNodeRef} className={`w-100 h-100 border-2 flex items-center justify-center`} data-cy={`image-tile-${id}`} >
             <img src={imageSrc} className="w-full h-full object-cover"/>
             {/* <p>For testing: {id}</p> */}
         </div>
