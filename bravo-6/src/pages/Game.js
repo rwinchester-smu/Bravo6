@@ -60,23 +60,24 @@ function Game() {
   const [playAudio, setPlayAudio] = useState(null);
 
   //Runs on first render, sets up the game to immediately be in a September round
+  //Author: Riley Winchester
   useEffect(() => {
     let [start, end] = MONTH_TO_WORD_RANGES[0];
     let initialWords = wordsData.slice(start, end);
 
-    let shuffledGridWords = GetShuffledGridWords(initialWords);
-
     setWords(initialWords);
-    setGridWords(shuffledGridWords);
+    setGridWords(GetShuffledGridWords(initialWords));
   }, []);
 
   //Whenever the grid is updated, choose a new target word
+  //Author: Riley Wincheser
   useEffect(() => {
     ChooseTargetImage();
   }, [gridWords]);
 
   //Whenever a word is guessed, check if there are remaining words. If not,
   //reset the game.
+  //Author: Riley Winchester
   useEffect(() => {
     if (usedWordIds.length === words.length) {
       resetGame();
@@ -91,6 +92,7 @@ function Game() {
   };
 
   //Chooses the target image that the player will attempt to guess
+  //Author: Riley Winchester
   const ChooseTargetImage = () => {
     if (gridWords.length === 0) return;
   
@@ -100,8 +102,9 @@ function Game() {
     setTargetWord(randomWord);
   };
 
-  // Add the correct words for the selected month whenever dropdown is used
-  // The event param contains the event info from the onChange of the select
+  //Add the correct words for the selected month whenever dropdown is used
+  //The event param contains the event info from the onChange of the select
+  //Author: Riley Winchester, Matthew Audas
   function addWords(event) {
     let month = Number(event.target.value);
     let [start, end] = MONTH_TO_WORD_RANGES[month] || [0, 3]
@@ -109,24 +112,22 @@ function Game() {
 
     resetGame();
 
-    let shuffledGridWords = GetShuffledGridWords(newWords);
-
     setWords(newWords);
-    setGridWords(shuffledGridWords);
+    setGridWords(GetShuffledGridWords(newWords));
   }
 
   //Resets the game to a new round of whatever month was selected
+  //Author: Riley Winchester
   const resetGame = () => {
     setUsedWordIds([]);
     setWinCounter(0);
 
-    let shuffledGridWords = GetShuffledGridWords(words);
-
-    setGridWords(shuffledGridWords);
+    setGridWords(GetShuffledGridWords(words));
   }
 
   //Gets called when the BearPaw is dropped
   //Determines if it was a win or loss, and then increments
+  //Author: Riley Winchester
   const handleDragEnd = (event) => {
     //Only continue if the bear paw was dropped over an image
     if (!event.over) return;
