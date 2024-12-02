@@ -27,7 +27,7 @@ const BearPaw = () => {
             isDragging ? 'opacity-50' : 'opacity-100'
           }`}
         >
-            <img src={mikmaqBearPaw} className='' />
+            <img src={mikmaqBearPaw} className='paw' />
         </div>
     );
 }

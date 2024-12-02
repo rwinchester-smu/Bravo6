@@ -3,10 +3,10 @@ body {
   /* Fallback color */
   background-color: #ffdd57;
 
-  height: 110vh; /* Full viewport height */
+  /* height: 110vh; Full viewport height */
   display: flex; /* Use flexbox for centering */
   justify-content: center; /* Horizontally center */
-  align-items: flex; /* Vertically center */
+  /* align-items: flex; Vertically center */
   overflow: hidden; /* Hide scrollbar */
 }
 
@@ -14,10 +14,17 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px; /* Adjust the gap as needed */
-  max-width: 300px; /* Maximum width for the grid */
-  width: 90%; /* Take up full width of its container but not more than max-width */
-  padding: 20px; /* Padding around the grid */
+
+  padding: 40px; /* Padding around the grid */
+  margin-top: -20px;
   box-sizing: inherit; /* Include padding in width/height calculations */
-  width: 300px; /* Grid size adjust as needed */
+  width: 700px; /* Grid size adjust as needed */
   height: fit-content;
+}
+
+.paw {
+  width: 150px; /* Width adjusts to the content (try 200) */
+  height: auto; /* Fixed height */
+  max-width: 200%; /* Ensures the image doesn't exceed container width */
+  object-fit: contain; /* Optional: maintains the aspect ratio by cropping */
 }

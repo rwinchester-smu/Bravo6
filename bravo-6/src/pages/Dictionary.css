@@ -1,37 +1,35 @@
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #BFDBFE;
+  background-color: #bfdbfe;
 }
 
 .Dictionary {
-    font-family: "Comic Sans MS", cursive;
-    max-width: 600px;
-    margin: auto;
-    text-align: left;
-    min-height:100vh;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    padding: 10px;
-  }
-  
-  li div {
-    padding: 10px 0;
-  }
-  
-  img {
-    display: block;
-    margin: 5px 0;
-    max-width: 100%;
-    border-radius: 5px;
-  }
-  
-  
+  font-family: "Comic Sans MS", cursive;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+}
+
+li div {
+  padding: 10px 0;
+}
+
+img {
+  display: block;
+  margin: 5px 0;
+  max-width: 100%;
+  border-radius: 5px;
+}
