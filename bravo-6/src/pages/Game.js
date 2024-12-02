@@ -1,6 +1,6 @@
 // Purpose: Creates the game grid based on the Month Select Dropdown, and handles
 // What happens on drag and drop. Handles the basic game loop.
-// Authours: Cohen Creighton, Elyse Louis, Matthew Audas, Riley Winchester
+// Authors: Cohen Creighton, Elyse Louis, Matthew Audas, Riley Winchester
 
 import "./Game.css";
 import { useState, useEffect } from "react";
