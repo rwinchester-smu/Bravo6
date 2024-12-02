@@ -9,14 +9,14 @@ import {useDroppable} from '@dnd-kit/core'
 // id: Id of the image
 // imageSrc: Source of the image
 // Author: Riley Winchester
-function ImageTile({id, imageSrc}) {
+function ImageTile({id, imageSrc, word}) {
     const {setNodeRef} = useDroppable({
         id: id, 
     });
 
     return (
         <div ref={setNodeRef} className={`w-100 h-100 border-2 flex items-center justify-center`} data-cy={`image-tile-${id}`} >
-            <img src={imageSrc} className="w-full h-full object-cover"/>
+            <img src={imageSrc} alt={word} className="w-full h-full object-cover"/>
         </div>
     )
 }
