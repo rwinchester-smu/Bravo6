@@ -1,3 +1,7 @@
+// Purpose: Creates the game grid based on the Month Select Dropdown, and handles
+// What happens on drag and drop. Handles the basic game loop.
+// Authours: Cohen Creighton, Elyse Louis, Matthew Audas, Riley Winchester
+
 import "./Game.css";
 import { useState, useEffect } from "react";
 import { DndContext } from "@dnd-kit/core";
@@ -5,12 +9,12 @@ import { Link } from "react-router-dom";
 import wordsData from '../Components/wordsData.js';
 import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
-import { CalculateWinLoss, ProvideWinLossFeedback, shuffleArray } from "../Utils/GameLogic";
+import { CalculateWinLoss, PlayWinLossAudio, GetShuffledGridWords } from "../Utils/GameLogic";
 import Sound from '../Components/Sound';
 import soundImage from '../Components/soundimage.png';
 
-//map words to audios
-const audioFiles = {
+//Map words to audios
+const AUDIO_FILES = {
   "ala'tu": "/audio/alatu.wav",
   "aqq": "/audio/aqq.wav",
   "eliey": "/audio/eliey.wav",
@@ -35,11 +39,8 @@ const audioFiles = {
   "wiktm": "/audio/wiktm.wav"
 };
 
-const placeholderImage = {id:99,word:"",description:"", image:"https://fakeimg.pl/1024x1024/4ade80/4ade80?font=bebas",
-audio:""}
-
-// Map of months to word index ranges
-const monthWordRanges = {
+//Used to reference which words belong to which months
+const MONTH_TO_WORD_RANGES = {
   0: [0, 3],   
   1: [0, 6],  
   2: [0, 9],  
@@ -49,6 +50,7 @@ const monthWordRanges = {
   6: [0, 20], 
 };
 
+//The main game function that returns the game html
 function Game() {
   const [words, setWords] = useState(wordsData.slice(0, 3));
   const [gridWords, setGridWords] = useState([]);
@@ -57,88 +59,76 @@ function Game() {
   const [usedWordIds, setUsedWordIds] = useState([]);
   const [playAudio, setPlayAudio] = useState(null);
 
-
+  //Runs on first render, sets up the game to immediately be in a September round
   useEffect(() => {
-    let [start, end] = monthWordRanges[0]; // Default to September
+    let [start, end] = MONTH_TO_WORD_RANGES[0];
     let initialWords = wordsData.slice(start, end);
 
-    let shuffledGridWords = shuffleArray(initialWords).slice(0, 9);
-    
-
-    while (shuffledGridWords.length < 9) {
-      shuffledGridWords.push(placeholderImage)
-      shuffledGridWords = shuffleArray(shuffledGridWords)
-    }
+    let shuffledGridWords = GetShuffledGridWords(initialWords);
 
     setWords(initialWords);
     setGridWords(shuffledGridWords);
   }, []);
 
+  //Whenever the grid is updated, choose a new target word
   useEffect(() => {
-    chooseTargetImage();
+    ChooseTargetImage();
   }, [gridWords]);
 
+  //Whenever a word is guessed, check if there are remaining words. If not,
+  //reset the game.
   useEffect(() => {
     if (usedWordIds.length === words.length) {
       resetGame();
     }
   }, [usedWordIds]);
 
-  const playWordAudio = (word) => { 
-    if (audioFiles[word]) { 
-      setPlayAudio(audioFiles[word]); 
+  const PlayWordAudio = (word) => { 
+    if (AUDIO_FILES[word]) { 
+      setPlayAudio(AUDIO_FILES[word]); 
       setTimeout(() => setPlayAudio(null), 1000);
     }
   };
 
-  const chooseTargetImage = () => {
+  //Chooses the target image that the player will attempt to guess
+  const ChooseTargetImage = () => {
     if (gridWords.length === 0) return;
   
     let availibleWords = gridWords.filter(word => !usedWordIds.includes(word.id) && word.word !== "")
 
-    // Select a random word from the current grid
     let randomWord = availibleWords[Math.floor(Math.random() * availibleWords.length)];
     setTargetWord(randomWord);
   };
 
+  // Add the correct words for the selected month whenever dropdown is used
+  // The event param contains the event info from the onChange of the select
   function addWords(event) {
     let month = Number(event.target.value);
-    let [start, end] = monthWordRanges[month] || [0, 3]
+    let [start, end] = MONTH_TO_WORD_RANGES[month] || [0, 3]
     let newWords = wordsData.slice(start, end);
-
-    if (newWords.length === 0) {
-      alert('uh oh'); // this whole if is for testing
-      return;
-    }
 
     resetGame();
 
-    let shuffledGridWords = shuffleArray(newWords).slice(0, 9);
-
-    while (shuffledGridWords.length < 9) {
-      shuffledGridWords.push(placeholderImage)
-      shuffledGridWords = shuffleArray(shuffledGridWords)
-    }
+    let shuffledGridWords = GetShuffledGridWords(newWords);
 
     setWords(newWords);
     setGridWords(shuffledGridWords);
   }
 
+  //Resets the game to a new round of whatever month was selected
   const resetGame = () => {
     setUsedWordIds([]);
     setWinCounter(0);
 
-    let shuffledGridWords = shuffleArray(words).slice(0, 9);
-
-    while (shuffledGridWords.length < 9) {
-      shuffledGridWords.push(placeholderImage)
-      shuffledGridWords = shuffleArray(shuffledGridWords)
-    }
+    let shuffledGridWords = GetShuffledGridWords(words);
 
     setGridWords(shuffledGridWords);
   }
 
+  //Gets called when the BearPaw is dropped
+  //Determines if it was a win or loss, and then increments
   const handleDragEnd = (event) => {
+    //Only continue if the bear paw was dropped over an image
     if (!event.over) return;
 
     let selectedWordId = Number(event.over.id);
@@ -150,15 +140,9 @@ function Game() {
       setUsedWordIds(prev => [...prev, targetWord.id]);
     }
 
-    ProvideWinLossFeedback(isWin);
+    PlayWinLossAudio(isWin);
 
-    // Shuffle the grid and select a new target word
-    let shuffledGridWords = shuffleArray(words).slice(0, 9);
-
-    while (shuffledGridWords.length < 9) {
-      shuffledGridWords.push(placeholderImage)
-      shuffledGridWords = shuffleArray(shuffledGridWords)
-    }
+    let shuffledGridWords = GetShuffledGridWords(words);
 
     setGridWords(shuffledGridWords);
   }
@@ -201,20 +185,12 @@ function Game() {
             src={soundImage}
             alt="Sound"
             className="sound-image"
-            onClick={() => playWordAudio(targetWord?.word)}
+            onClick={() => PlayWordAudio(targetWord?.word)}
           />
         </div> 
                 
         <div className="flex flex-col lg:flex-row mx-auto items-center lg:justify-center w-full h-screen p-4 box-border">
           <div className="w-1/3 flex flex-col items-center lg:items-end lg:mr-8 mb-4 lg:mb-0">
-          {/* <h1 className="flex flex-row mb-2 text-center text-green-900">
-                Chosen Word:{" "}
-                {playerChosenImage !== null
-                  ? gridWords[playerChosenImage]?.word
-                  : "None"}{" "}
-                <br />
-                Win Counter: {winCounter}
-              </h1> */}
             {/* Draggable bearpaw */}
             <BearPaw />
           </div>
