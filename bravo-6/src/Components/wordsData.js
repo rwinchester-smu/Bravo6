@@ -1,6 +1,6 @@
 
 // array of objects representing each word and their data (image, audio, description)
-// author: cohen creighton
+// author: cohen creighton, riley winchester
 const wordsData=[
     {id:1,word:"ni'n",description:"I",
     image:"/images/I.jpeg",

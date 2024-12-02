@@ -37,6 +37,9 @@ export const shuffleArray = (array) => {
     return [...array].sort(() => Math.random() - 0.5)
   }
 
+// Params: boolean
+// plays audio based on whether the player won or lost the round
+// author: cohen creighton
 export const PlayWinLossAudio = (isWin) => 
 {
     if (isWin === true) 

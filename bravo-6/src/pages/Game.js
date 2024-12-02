@@ -149,6 +149,8 @@ function Game() {
 
   return (
     <div className="overflow-hidden h-screen">
+    {/* Dropdown for selecting the month */}
+    {/* author: cohen creighton */}
     <div className="bg-blue-200">
       <select onChange={addWords} className=" fixed text-blue-900 rounded-lg bg-green-400 border-2 border-pink-400 top-2 left-2 px-2 py-2">
         <option value={0}>Wikumkewiku's	(September)</option>
@@ -160,7 +162,8 @@ function Game() {
         <option value={6}>Si'ko'ku's (March)</option>
 
       </select>
-
+      {/* dictionary button */}
+      {/* author: cohen creighton */}
       <Link to={"/Dictionary"}>
         <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg fixed top-2 right-2 border-2 border-pink-400" 
         type="button">
@@ -168,6 +171,7 @@ function Game() {
         </button>
       </Link>
       {/* dedication to Angie */}
+      {/* author: cohen creighton */}
       <p className="text-pink-500 text-2xl text-right px-5 mt-20 font-bold">
         Mikwite'tmk+t Angie
       </p>
@@ -200,6 +204,7 @@ function Game() {
             <GameGrid words={gridWords}/>
           </div>
           {/* stars given to each correct guess, wrapping in case of overflow on screen */}
+          {/* author: cohen creighton */}
           <div className="flex flex-wrap justify-start mt-4 w-full">
             {Array.from({length:winCounter}).map((_,index)=>(
               <img key={index} src={'/star.png'} alt="star" className="w-8 h-8 mx-1" />
