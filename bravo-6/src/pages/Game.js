@@ -148,7 +148,7 @@ function Game() {
   }
 
   return (
-    <div className="overflow-hidden h-screen">
+    <div className="overflow-hidden h-screen max-w-md mx-auto p-4 bg-blue-200 Grid">
     {/* Dropdown for selecting the month */}
     {/* author: cohen creighton */}
     <div className="bg-blue-200">
