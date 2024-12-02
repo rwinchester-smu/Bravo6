@@ -1,7 +1,8 @@
 import ImageTile from './ImageTile';
 
 // Maps out droppable ImageTiles into a 3 col grid, based on an array of image 
-// objects. 
+// objects.
+// Param is an array of image objects 
 // Author: Riley Winchester
 const GameGrid = ({words}) => {
     //returns the array mapped into a grid 

@@ -5,6 +5,7 @@ import mikmaqBearPaw from '../Components/mikmaqbearpaw.png';
 // Draggable item used to select from droppable grid
 // Uses useDraggable hook from dndkit library, 
 // see https://docs.dndkit.com/api-documentation/draggable
+// Returns the image as a react component
 // Author: Riley Winchester
 const BearPaw = () => {
     const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({
