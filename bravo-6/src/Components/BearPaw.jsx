@@ -27,6 +27,7 @@ const BearPaw = () => {
         className={`object-fill touch-none cursor-pointer ${
             isDragging ? 'opacity-50' : 'opacity-100'
           }`}
+        data-cy="bearpaw"
         >
             <img src={mikmaqBearPaw} alt='BearPaw' className='' />
         </div>
