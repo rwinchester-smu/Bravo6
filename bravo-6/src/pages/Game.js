@@ -84,6 +84,8 @@ function Game() {
     }
   }, [usedWordIds]);
 
+  //Play audio of corresponding word and stop when done
+  //Author: Elyse Louis
   const PlayWordAudio = (word) => { 
     if (AUDIO_FILES[word]) { 
       setPlayAudio(AUDIO_FILES[word]); 
@@ -184,6 +186,7 @@ function Game() {
         <div className="flex flex-col items-center bg-blue-200 min-h-screen">
 
         {/* Word and sound image container */}
+        {/* author: Elyse Louis */}
         <div className="word-container">
           <h1 className="font-bold text-2xl text-blue-900">{targetWord?.word}</h1>
           <img

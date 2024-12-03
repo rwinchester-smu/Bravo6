@@ -1,3 +1,6 @@
+//sound component used by audio files and sound image
+//author: Elyse Louis
+
 import React, {useEffect} from 'react';
 
 const Sound = ({ src, play }) => {
