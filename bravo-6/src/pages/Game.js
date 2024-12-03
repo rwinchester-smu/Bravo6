@@ -1,6 +1,6 @@
 // Purpose: Creates the game grid based on the Month Select Dropdown, and handles
 // What happens on drag and drop. Handles the basic game loop.
-// Authours: Cohen Creighton, Elyse Louis, Matthew Audas, Riley Winchester
+// Authors: Cohen Creighton, Elyse Louis, Matthew Audas, Riley Winchester
 
 import "./Game.css";
 import { useState, useEffect } from "react";
@@ -60,23 +60,24 @@ function Game() {
   const [playAudio, setPlayAudio] = useState(null);
 
   //Runs on first render, sets up the game to immediately be in a September round
+  //Author: Riley Winchester
   useEffect(() => {
     let [start, end] = MONTH_TO_WORD_RANGES[0];
     let initialWords = wordsData.slice(start, end);
 
-    let shuffledGridWords = GetShuffledGridWords(initialWords);
-
     setWords(initialWords);
-    setGridWords(shuffledGridWords);
+    setGridWords(GetShuffledGridWords(initialWords));
   }, []);
 
   //Whenever the grid is updated, choose a new target word
+  //Author: Riley Wincheser
   useEffect(() => {
     ChooseTargetImage();
   }, [gridWords]);
 
   //Whenever a word is guessed, check if there are remaining words. If not,
   //reset the game.
+  //Author: Riley Winchester
   useEffect(() => {
     if (usedWordIds.length === words.length) {
       resetGame();
@@ -91,6 +92,7 @@ function Game() {
   };
 
   //Chooses the target image that the player will attempt to guess
+  //Author: Riley Winchester
   const ChooseTargetImage = () => {
     if (gridWords.length === 0) return;
   
@@ -100,8 +102,9 @@ function Game() {
     setTargetWord(randomWord);
   };
 
-  // Add the correct words for the selected month whenever dropdown is used
-  // The event param contains the event info from the onChange of the select
+  //Add the correct words for the selected month whenever dropdown is used
+  //The event param contains the event info from the onChange of the select
+  //Author: Riley Winchester, Matthew Audas
   function addWords(event) {
     let month = Number(event.target.value);
     let [start, end] = MONTH_TO_WORD_RANGES[month] || [0, 3]
@@ -109,24 +112,22 @@ function Game() {
 
     resetGame();
 
-    let shuffledGridWords = GetShuffledGridWords(newWords);
-
     setWords(newWords);
-    setGridWords(shuffledGridWords);
+    setGridWords(GetShuffledGridWords(newWords));
   }
 
   //Resets the game to a new round of whatever month was selected
+  //Author: Riley Winchester
   const resetGame = () => {
     setUsedWordIds([]);
     setWinCounter(0);
 
-    let shuffledGridWords = GetShuffledGridWords(words);
-
-    setGridWords(shuffledGridWords);
+    setGridWords(GetShuffledGridWords(words));
   }
 
   //Gets called when the BearPaw is dropped
   //Determines if it was a win or loss, and then increments
+  //Author: Riley Winchester
   const handleDragEnd = (event) => {
     //Only continue if the bear paw was dropped over an image
     if (!event.over) return;
@@ -148,7 +149,9 @@ function Game() {
   }
 
   return (
-    <div className="overflow-hidden h-screen">
+    <div className="overflow-hidden h-screen max-w-md mx-auto p-4 bg-blue-200 Grid">
+    {/* Dropdown for selecting the month */}
+    {/* author: cohen creighton */}
     <div className="bg-blue-200">
       <select onChange={addWords} className=" fixed text-blue-900 rounded-lg bg-green-400 border-2 border-pink-400 top-2 left-2 px-2 py-2">
         <option value={0}>Wikumkewiku's	(September)</option>
@@ -160,7 +163,8 @@ function Game() {
         <option value={6}>Si'ko'ku's (March)</option>
 
       </select>
-
+      {/* dictionary button */}
+      {/* author: cohen creighton */}
       <Link to={"/Dictionary"}>
         <button className="text-blue-900 bg-green-400 px-2 py-2 rounded-lg fixed top-2 right-2 border-2 border-pink-400" 
         type="button">
@@ -168,6 +172,7 @@ function Game() {
         </button>
       </Link>
       {/* dedication to Angie */}
+      {/* author: cohen creighton */}
       <p className="text-pink-500 text-2xl text-right px-5 mt-20 font-bold">
         Mikwite'tmk+t Angie
       </p>
@@ -200,6 +205,7 @@ function Game() {
             <GameGrid words={gridWords}/>
           </div>
           {/* stars given to each correct guess, wrapping in case of overflow on screen */}
+          {/* author: cohen creighton */}
           <div className="flex flex-wrap justify-start mt-4 w-full">
             {Array.from({length:winCounter}).map((_,index)=>(
               <img key={index} src={'/star.png'} alt="star" className="w-8 h-8 mx-1" />

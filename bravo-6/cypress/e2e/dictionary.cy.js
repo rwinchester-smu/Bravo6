@@ -1,5 +1,5 @@
 // cohen's test - dictionary opens properly upon button click
-describe("open dictionary",()=>{
+describe("open dictionary - cohen",()=>{
     it("should open the dictionary",()=>{
         cy.visit("http://ugdev.cs.smu.ca:3002");
         cy.get("button").click();

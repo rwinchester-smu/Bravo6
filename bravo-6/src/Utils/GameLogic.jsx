@@ -11,6 +11,7 @@ audio:""}
 //Params: The word id of the player selected image, and the word id of the target
 // image
 // Returns the result as a bool
+//Author: Riley Winchester
 export const CalculateWinLoss = (playerSelectedImage, targetImage) => 
 {
     return (playerSelectedImage === targetImage)
@@ -20,8 +21,9 @@ export const CalculateWinLoss = (playerSelectedImage, targetImage) =>
 //Shuffles the array, then selects 9. If there are not 9 words, fills the array
 //with placeholders and then shuffles again. 
 //Returns just the 9 words for the grid
-export const GetShuffledGridWords = (gridWordsArray) => {
-    let shuffledGridWords = shuffleArray(gridWordsArray).slice(0, 9);
+//Author: Riley Winchester
+export const GetShuffledGridWords = (wordsArray) => {
+    let shuffledGridWords = shuffleArray(wordsArray).slice(0, 9);
 
     while (shuffledGridWords.length < 9) {
       shuffledGridWords.push(PLACEHOLDER_IMAGE)
@@ -33,10 +35,14 @@ export const GetShuffledGridWords = (gridWordsArray) => {
 
 //Params: an array
 //Shuffles the array
+//Author: Riley Winchester
 export const shuffleArray = (array) => {
     return [...array].sort(() => Math.random() - 0.5)
   }
 
+// Params: boolean
+// plays audio based on whether the player won or lost the round
+// author: cohen creighton
 export const PlayWinLossAudio = (isWin) => 
 {
     if (isWin === true) 
