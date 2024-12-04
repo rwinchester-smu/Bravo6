@@ -11,7 +11,6 @@ import GameGrid from "../Components/GameGrid";
 import BearPaw from "../Components/BearPaw";
 import { CalculateWinLoss, PlayWinLossAudio, GetShuffledGridWords } from "../Utils/GameLogic";
 import Sound from '../Components/Sound';
-import soundImage from '../Components/soundimage.png';
 
 //Map words to audios
 const AUDIO_FILES = {
@@ -176,7 +175,7 @@ function Game() {
       {/* dedication to Angie */}
       {/* author: cohen creighton */}
       <p className="text-pink-500 text-2xl text-right px-5 mt-20 font-bold">
-        mikwite'tmk+t Angie
+        Mikwite'tmk+t Angie
       </p>
     </div>
 
@@ -190,7 +189,7 @@ function Game() {
         <div className="word-container">
           <h1 className="font-bold text-2xl text-blue-900">{targetWord?.word}</h1>
           <img
-            src={soundImage}
+            src='/images/soundimage.png'
             alt="Sound"
             className="sound-image"
             onClick={() => PlayWordAudio(targetWord?.word)}
