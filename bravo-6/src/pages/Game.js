@@ -176,7 +176,7 @@ function Game() {
       {/* dedication to Angie */}
       {/* author: cohen creighton */}
       <p className="text-pink-500 text-2xl text-right px-5 mt-20 font-bold">
-        Mikwite'tmk+t Angie
+        mikwite'tmk+t Angie
       </p>
     </div>
 
@@ -211,7 +211,7 @@ function Game() {
           {/* author: cohen creighton */}
           <div className="flex flex-wrap justify-start mt-4 w-full">
             {Array.from({length:winCounter}).map((_,index)=>(
-              <img key={index} src={'/star.png'} alt="star" className="w-8 h-8 mx-1" />
+              <img key={index} src={'/images/star.png'} alt="star" className="w-8 h-8 mx-1" />
             ))}
           </div>
         </div>
