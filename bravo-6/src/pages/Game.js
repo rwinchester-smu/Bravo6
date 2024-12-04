@@ -122,8 +122,8 @@ function Game() {
   //Author: Riley Winchester
   const resetGame = () => {
     setUsedWordIds([]);
-    setWinCounter(0);
-
+    //Shows stars for an extra 2.5 seconds after game ends
+    setTimeout(() => {setWinCounter(0); }, 2500);
     setGridWords(GetShuffledGridWords(words));
   }
 

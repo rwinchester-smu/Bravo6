@@ -1,0 +1,4 @@
+Team Name: Bravo 6
+UGDEV username: group25C
+UGDEV password: WednesdayBulgariaFactories
+Execute npm start at: group25C/Bravo6/bravo-6
